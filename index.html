@@ -2,66 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator Online | Free Date of Birth to Age Tool</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Free Age Calculator online tool. Calculate your exact age in years, months, and days by entering your date of birth. Fast, simple, and accurate age calculator.">
-  <meta name="keywords" content="age calculator, online age calculator, calculate age, date of birth calculator, free age calculator, dob to age">
-  <meta name="author" content="Your Name">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Age Calculator Online | Free Date of Birth to Age Tool">
-  <meta property="og:description" content="Easily calculate your age online using this free age calculator. Just enter your date of birth.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourdomain.com/">
-  <meta property="og:image" content="https://yourdomain.com/thumbnail.png">
-
-  <link rel="stylesheet" href="style.css">
+  <title>Age Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+    }
+    h2 {
+      color: #003366;
+    }
+    .box {
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      max-width: 500px;
+    }
+    .row {
+      margin-bottom: 15px;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      font-weight: bold;
+    }
+    input[type="date"] {
+      padding: 5px;
+      font-size: 14px;
+    }
+    button {
+      background: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: darkgreen;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e6f2ff;
+      border: 1px solid #99ccff;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Free Age Calculator Online</h1>
-    <p>Enter your Date of Birth and calculate your exact age instantly!</p>
-  </header>
+  <h2>Age Calculator</h2>
+  <p>The Age Calculator can determine the age or interval between two dates. 
+  The calculated age will be displayed in years, months, weeks, days, hours, minutes, and seconds.</p>
 
-  <main>
-    <div class="container">
+  <div class="box">
+    <div class="row">
+      <label>Date of Birth</label>
       <input type="date" id="dob">
-      <button onclick="calculateAge()">Calculate Age</button>
-      <p id="result"></p>
     </div>
+    <div class="row">
+      <label>Age at the Date of</label>
+      <input type="date" id="endDate">
+    </div>
+    <button onclick="calculateAge()">Calculate ▶</button>
+    
+    <div id="output" class="result" style="display:none;"></div>
+  </div>
 
-    <!-- ✅ SEO Article -->
-    <section class="article">
-      <h2>About This Free Age Calculator Tool</h2>
-      <p>
-        Age is something everyone wants to know at some point. Whether you are filling out a form, 
-        planning your retirement, or just curious, calculating age accurately is important. 
-        Our free Age Calculator is designed to give you an exact age based on your date of birth. 
-        Unlike traditional methods where you count years manually, this tool provides you the exact 
-        years, months, and days in just one click. 
-      </p>
-      <p>
-        This age calculator is simple, fast, and works on all devices including mobile and desktop. 
-        It does not require any download or registration. Just select your birth date and click 
-        "Calculate". Within seconds, you will get your precise age. 
-        Students, professionals, and even parents can use it for educational, personal, or 
-        official purposes. We believe in accuracy and simplicity, and that’s why this tool is 
-        completely free for everyone to use. 
-      </p>
-      <p>
-        Try our Age Calculator today and get instant results without any hassle. 
-        Bookmark this page for future use and share it with your friends who may also 
-        need a quick and reliable way to calculate their age.
-      </p>
-    </section>
-  </main>
+  <script>
+    function calculateAge() {
+      const dob = new Date(document.getElementById("dob").value);
+      const endDateInput = document.getElementById("endDate").value;
+      const endDate = endDateInput ? new Date(endDateInput) : new Date();
 
-  <footer>
-    <p>© 2025 Age Calculator Tool | Designed with ❤️</p>
-  </footer>
+      if (!dob.getTime()) {
+        alert("Please select Date of Birth!");
+        return;
+      }
+      if (endDate < dob) {
+        alert("End date cannot be earlier than Date of Birth!");
+        return;
+      }
 
-  <script src="script.js"></script>
+      let diffMs = endDate - dob;
+      let seconds = Math.floor(diffMs / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      let days = Math.floor(hours / 24);
+      let weeks = Math.floor(days / 7);
+
+      // years & months
+      let years = endDate.getFullYear() - dob.getFullYear();
+      let months = endDate.getMonth() - dob.getMonth();
+      if (months < 0 || (months === 0 && endDate.getDate() < dob.getDate())) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById("output").style.display = "block";
+      document.getElementById("output").innerHTML = `
+        <strong>Result:</strong><br>
+        Years: ${years}<br>
+        Months: ${months}<br>
+        Weeks: ${weeks}<br>
+        Days: ${days}<br>
+        Hours: ${hours}<br>
+        Minutes: ${minutes}<br>
+        Seconds: ${seconds}
+      `;
+    }
+  </script>
 </body>
 </html>
