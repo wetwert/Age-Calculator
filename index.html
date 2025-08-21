@@ -3,149 +3,229 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator - Calculate Your Exact Age Online</title>
-  <meta name="description" content="Use our free Age Calculator to find your exact age in years, months, and days. Get your next birthday countdown instantly with dark mode support.">
-  <meta name="keywords" content="age calculator, date of birth calculator, birthday countdown, online calculator, next birthday, dark mode age calculator">
-
-  <!-- ✅ Favicon -->
-  <link rel="icon" type="image/png" href="/favicon.png">
-
+  <title>Age Calculator - Calculate Your Exact Age</title>
+  <meta name="description" content="Free online age calculator. Calculate your exact age in years, months, days, and seconds. Includes birthday countdown, dark mode, and FAQs.">
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
       color: #333;
       transition: background 0.3s, color 0.3s;
     }
-    header, footer {
-      background: #0077cc;
-      color: #fff;
+    header {
+      background: #4CAF50;
+      color: white;
       padding: 15px;
       text-align: center;
+      position: sticky;
+      top: 0;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
     }
     .container {
       max-width: 800px;
-      margin: 20px auto;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    .result {
+      font-size: 18px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .article {
+      max-width: 900px;
+      margin: 40px auto;
       padding: 20px;
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      line-height: 1.6;
     }
-    label, input, button {
-      font-size: 16px;
-      margin-top: 10px;
+    .article h2, .article h3, .article h4 {
+      color: #4CAF50;
     }
-    input {
-      padding: 8px;
-      margin-top: 5px;
-    }
-    button {
-      padding: 10px 15px;
-      background: #0077cc;
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #005fa3;
-    }
-    .dark-mode {
+    footer {
       background: #222;
-      color: #fff;
+      color: #ddd;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
     }
-    .dark-mode .container {
+    footer a {
+      color: #4CAF50;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    /* Dark Mode */
+    .dark {
+      background: #121212;
+      color: #f9f9f9;
+    }
+    .dark header {
       background: #333;
-      color: #fff;
     }
-    .toggle-btn {
-      margin-top: 10px;
-      background: #444;
-      border-radius: 20px;
-      font-size: 14px;
-      padding: 8px 12px;
-    }
-    footer p {
-      margin: 5px 0;
+    .dark footer {
+      background: #111;
+      color: #bbb;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Age Calculator</h1>
-  <p>Find your exact age and next birthday instantly!</p>
-  <button onclick="toggleDarkMode()" class="toggle-btn">🌙 Toggle Dark Mode</button>
-</header>
+  <!-- Header -->
+  <header>
+    <h1>Age Calculator</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#article">Article</a>
+      <a href="#faqs">FAQs</a>
+      <a href="#footer">Contact</a>
+    </nav>
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+  </header>
 
-<div class="container">
-  <label for="dob">Enter your Date of Birth:</label><br>
-  <input type="date" id="dob"><br>
-  <button onclick="calculateAge()">Calculate Age</button>
-  
-  <h2 id="result"></h2>
-  <h3 id="nextBirthday"></h3>
-</div>
+  <!-- Calculator -->
+  <div class="container">
+    <h2>Calculate Your Age</h2>
+    <input type="date" id="dob">
+    <button onclick="calculateAge()">Calculate</button>
+    <div class="result" id="result"></div>
+    <div class="result" id="nextBirthday"></div>
+  </div>
 
-<div class="container">
-  <h2>About Age Calculator</h2>
-  <p>
-    Our free Age Calculator helps you calculate your exact age in years, months, and days. 
-    Simply enter your date of birth and find out how old you are today. 
-    You’ll also get a live countdown for your upcoming birthday. 
-    This tool is useful for students, professionals, and anyone curious about their exact age.
-  </p>
-</div>
+  <!-- Article Section -->
+  <section class="article" id="article">
+    <h2>Free Online Age Calculator – Calculate Your Exact Age in Seconds</h2>
+    <p>
+      In today’s fast digital world, people want quick and accurate tools that can save time and effort. One such useful online tool is the <strong>Age Calculator</strong>. 
+      Whether you are curious about your exact age in years, months, days, or even seconds, this tool gives you precise results instantly. 
+      It is especially helpful for students, job seekers, teachers, parents, and anyone who needs age-related calculations without confusion. 
+      Our Age Calculator is designed to be <em>fast, simple, and mobile-friendly</em>, so you can use it anytime, anywhere.
+    </p>
 
-<footer>
-  <p>&copy; 2025 CalculatorAge.net | All Rights Reserved</p>
-  <p>Made with ❤️ for simplicity and accuracy</p>
-</footer>
+    <h3>Why Use an Online Age Calculator?</h3>
+    <p>
+      Sometimes calculating age manually can be tricky, especially when it involves leap years, months with different days, and time zones. 
+      An online calculator eliminates these errors by doing all the math instantly. You only need to enter your date of birth, and within a second, you get your accurate age. 
+      This tool ensures <strong>accuracy, reliability, and convenience</strong>, making it one of the most useful free resources available online.
+    </p>
 
-<script>
-function calculateAge() {
-  const dob = document.getElementById('dob').value;
-  if (!dob) {
-    alert("Please select your Date of Birth.");
-    return;
-  }
+    <h3>Key Features of Our Age Calculator</h3>
+    <ul>
+      <li>✅ <strong>Instant Results</strong> – Get your exact age in years, months, days, hours, and even minutes.</li>
+      <li>✅ <strong>User-Friendly Design</strong> – Clean, simple, and responsive design for desktop and mobile users.</li>
+      <li>✅ <strong>Next Birthday Countdown</strong> – See how many days are left until your next birthday.</li>
+      <li>✅ <strong>Dark Mode Option</strong> – Easy on the eyes, especially at night.</li>
+      <li>✅ <strong>100% Free Tool</strong> – No signup, no hidden charges, just open and use.</li>
+      <li>✅ <strong>SEO & Mobile Optimized</strong> – Loads fast and works perfectly on all devices.</li>
+    </ul>
 
-  const birthDate = new Date(dob);
-  const today = new Date();
+    <h3>How to Use the Calculator?</h3>
+    <ol>
+      <li>Enter your Date of Birth in the input box.</li>
+      <li>Click on the "Calculate" button.</li>
+      <li>Within a second, your age will be displayed with complete details.</li>
+      <li>You can also see the countdown for your next birthday.</li>
+    </ol>
 
-  let years = today.getFullYear() - birthDate.getFullYear();
-  let months = today.getMonth() - birthDate.getMonth();
-  let days = today.getDate() - birthDate.getDate();
+    <h3 id="faqs">Frequently Asked Questions (FAQs)</h3>
+    <h4>1. Is this Age Calculator 100% accurate?</h4>
+    <p>
+      Yes, this tool uses precise date and time functions to ensure correct results, including leap years.
+    </p>
 
-  if (days < 0) {
-    months--;
-    days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-  }
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
+    <h4>2. Can I use it on my mobile phone?</h4>
+    <p>
+      Absolutely! Our tool is fully responsive and mobile-friendly, so you can use it on any smartphone, tablet, or PC.
+    </p>
 
-  document.getElementById("result").innerText = 
-    `You are ${years} years, ${months} months, and ${days} days old.`;
+    <h4>3. Do I need to sign up or install anything?</h4>
+    <p>
+      No, this tool is completely free and requires no installation or registration. Just open and calculate.
+    </p>
 
-  // Next birthday
-  let nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-  if (today > nextBirthday) {
-    nextBirthday.setFullYear(today.getFullYear() + 1);
-  }
+    <h4>4. Does it also show my upcoming birthday?</h4>
+    <p>
+      Yes! Along with your age, the calculator also displays how many days are left until your next birthday celebration.
+    </p>
 
-  const diff = nextBirthday - today;
-  const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
-  document.getElementById("nextBirthday").innerText = 
-    `🎉 Your next birthday is in ${daysLeft} days!`;
-}
+    <h3>Final Words</h3>
+    <p>
+      The <strong>Age Calculator</strong> is a powerful, free, and easy-to-use online tool that makes age calculation simple and fun. 
+      It is accurate, mobile-friendly, and comes with useful features like birthday countdown and dark mode. 
+      Whether you are filling out a job form, planning for your birthday, or just curious about your exact age, this calculator is here to help. 
+      Bookmark this page and use it anytime you need quick and reliable age-related calculations.
+    </p>
+  </section>
 
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
-</script>
+  <!-- Footer -->
+  <footer id="footer">
+    <p>&copy; 2025 CalculatorAge.net | All Rights Reserved</p>
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="contact.html">Contact Us</a>
+  </footer>
+
+  <script>
+    function calculateAge() {
+      const dob = document.getElementById('dob').value;
+      if (!dob) {
+        document.getElementById('result').innerText = "Please enter your date of birth.";
+        return;
+      }
+      const birthDate = new Date(dob);
+      const today = new Date();
+      let ageYears = today.getFullYear() - birthDate.getFullYear();
+      let ageMonths = today.getMonth() - birthDate.getMonth();
+      let ageDays = today.getDate() - birthDate.getDate();
+
+      if (ageDays < 0) {
+        ageMonths--;
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        ageDays += prevMonth;
+      }
+      if (ageMonths < 0) {
+        ageYears--;
+        ageMonths += 12;
+      }
+
+      document.getElementById('result').innerText = 
+        `You are ${ageYears} years, ${ageMonths} months, and ${ageDays} days old.`;
+
+      // Next Birthday Countdown
+      let nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+      if (today > nextBirthday) {
+        nextBirthday.setFullYear(today.getFullYear() + 1);
+      }
+      const diffTime = nextBirthday - today;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      document.getElementById('nextBirthday').innerText = 
+        `🎂 Your next birthday is in ${diffDays} days!`;
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
 
 </body>
 </html>
