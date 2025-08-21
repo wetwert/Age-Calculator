@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Crawl-delay (optional; some bots respect it)
+# Crawl-delay: 5
+
+Sitemap: https://calculatorage.net/sitemap.xml
