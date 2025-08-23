@@ -1,231 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator | CalculatorAge.net</title>
-  <meta name="description" content="Use our Age Calculator to find your exact age in years, months, days, hours, minutes, and seconds instantly.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-  <!-- ✅ Favicon -->
-  <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png">
-  
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-    }
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png" />
+    <link rel="shortcut icon" href="https://calculatorage.net/favicon.png" type="image/png" />
 
-    /* ====== Header ====== */
-    header {
-      background: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+    <!-- Title for SEO -->
+    <title>Age Calculator | Calculate Exact Age in Seconds</title>
 
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    <!-- Meta Description -->
+    <meta name="description" content="Use our Age Calculator to find your exact age in years, months, days, hours, minutes, and even seconds. 100% free and accurate online tool." />
 
-    header .logo {
-      font-size: 20px;
-      font-weight: bold;
-    }
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="Age Calculator, Online Age Calculator, Calculate Age, Exact Age Finder, Birthday Age Calculator, Date of Birth Calculator" />
 
-    header nav ul {
-      display: flex;
-      list-style: none;
-      gap: 15px;
-      margin: 0;
-      padding: 0;
-    }
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://calculatorage.net/" />
 
-    header nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      transition: 0.3s;
-    }
+    <!-- Open Graph -->
+    <meta property="og:title" content="Age Calculator | Calculate Exact Age in Seconds" />
+    <meta property="og:description" content="Find your exact age in years, months, days, hours, minutes, and even seconds with our free online Age Calculator." />
+    <meta property="og:image" content="https://calculatorage.net/favicon.png" />
+    <meta property="og:url" content="https://calculatorage.net/" />
+    <meta property="og:type" content="website" />
 
-    header nav ul li a:hover {
-      text-decoration: underline;
-    }
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Age Calculator | Calculate Exact Age in Seconds" />
+    <meta name="twitter:description" content="Check your exact age instantly in years, months, days, hours, and minutes with our free online Age Calculator." />
+    <meta name="twitter:image" content="https://calculatorage.net/favicon.png" />
 
-    .menu-toggle {
-      display: none;
-      font-size: 28px;
-      cursor: pointer;
-    }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    @media (max-width: 768px) {
-      header nav ul {
-        display: none;
-        flex-direction: column;
-        background: #4CAF50;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        width: 200px;
-        padding: 10px;
-        border-radius: 10px;
+    <!-- CSS & JS Bundles -->
+    <script type="module" crossorigin src="/assets/index-C63etm24.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CML18nd8.css">
+
+    <!-- Custom Header CSS -->
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
       }
-      header nav ul.show {
+      header {
+        background: #222;
+        color: #fff;
+        padding: 12px 20px;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header .logo {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      /* Mobile */
+      @media(max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          background: #333;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 200px;
+          display: none;
+          padding: 10px;
+        }
+        nav ul.show {
+          display: block;
+        }
+        .menu-toggle {
+          display: block;
+          cursor: pointer;
+          font-size: 22px;
+        }
       }
       .menu-toggle {
-        display: block;
+        display: none;
+        color: white;
       }
-    }
-
-    /* ====== Calculator Box ====== */
-    main {
-      padding: 30px;
-      text-align: center;
-    }
-
-    .calculator {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 500px;
-      margin: auto;
-    }
-
-    input[type="date"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 100%;
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-
-    button {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    button:hover {
-      background: #45a049;
-    }
-
-    #result {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #333;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ✅ Header -->
-  <header>
-    <div class="container">
+    </style>
+  </head>
+  <body>
+    <!-- ✅ Header above calculator -->
+    <header>
       <div class="logo">Age Calculator</div>
+      <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</div>
       <nav>
         <ul>
-          <li><a href="#calculator">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#privacy">Privacy Policy</a></li>
-          <li><a href="#disclaimer">Disclaimer</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+          <li><a href="/contact.html">Contact</a></li>
         </ul>
       </nav>
-      <div class="menu-toggle" id="menu-toggle">☰</div>
-    </div>
-  </header>
+    </header>
 
-  <!-- ✅ Main Content -->
-  <main>
-    <section id="calculator">
-      <h1>Free Online Age Calculator</h1>
-      <p>Enter your date of birth below to calculate your exact age in years, months, days, hours, minutes, and seconds.</p>
-      
-      <div class="calculator">
-        <input type="date" id="dob">
-        <button onclick="calculateAge()">Calculate Age</button>
-        <div id="result"></div>
-      </div>
-    </section>
+    <!-- ✅ Calculator will render here -->
+    <div id="root"></div>
 
-    <!-- ✅ About Section -->
-    <section id="about" style="margin-top:50px;">
-      <h2>About</h2>
-      <p>This tool helps you calculate your exact age instantly in different formats including years, months, days, hours, minutes, and seconds.</p>
-    </section>
-
-    <!-- ✅ Privacy Section -->
-    <section id="privacy" style="margin-top:50px;">
-      <h2>Privacy Policy</h2>
-      <p>We respect your privacy. No data is stored or shared. The calculation runs directly in your browser.</p>
-    </section>
-
-    <!-- ✅ Disclaimer Section -->
-    <section id="disclaimer" style="margin-top:50px;">
-      <h2>Disclaimer</h2>
-      <p>This calculator is provided for informational purposes only. We do not guarantee 100% accuracy.</p>
-    </section>
-
-    <!-- ✅ Contact Section -->
-    <section id="contact" style="margin-top:50px;">
-      <h2>Contact</h2>
-      <p>For queries, please reach out to us at <a href="mailto:info@calculatorage.net">info@calculatorage.net</a>.</p>
-    </section>
-  </main>
-
-  <!-- ✅ JavaScript -->
-  <script>
-    // Toggle Menu
-    document.getElementById("menu-toggle").onclick = function() {
-      document.querySelector("nav ul").classList.toggle("show");
-    };
-
-    // Age Calculator
-    function calculateAge() {
-      let dob = document.getElementById("dob").value;
-      if (!dob) {
-        document.getElementById("result").innerHTML = "⚠️ Please enter your date of birth.";
-        return;
-      }
-
-      let dobDate = new Date(dob);
-      let now = new Date();
-
-      let ageInMs = now - dobDate;
-
-      let years = now.getFullYear() - dobDate.getFullYear();
-      let months = now.getMonth() - dobDate.getMonth();
-      let days = now.getDate() - dobDate.getDate();
-
-      if (days < 0) {
-        months--;
-        days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-      }
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-
-      let hours = Math.floor(ageInMs / (1000 * 60 * 60));
-      let minutes = Math.floor(ageInMs / (1000 * 60));
-      let seconds = Math.floor(ageInMs / 1000);
-
-      document.getElementById("result").innerHTML = 
-        `<b>Your Age:</b><br>
-         ${years} Years, ${months} Months, ${days} Days <br>
-         OR ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds`;
-    }
-  </script>
-</body>
+    <!-- Replit Banner -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
 </html>
