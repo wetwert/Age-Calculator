@@ -10,7 +10,6 @@
   <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png">
   
   <style>
-    /* ====== Reset & Base ====== */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -136,11 +135,11 @@
       <div class="logo">Age Calculator</div>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="disclaimer.html">Disclaimer</a></li>
+          <li><a href="#calculator">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#disclaimer">Disclaimer</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <div class="menu-toggle" id="menu-toggle">☰</div>
@@ -149,14 +148,40 @@
 
   <!-- ✅ Main Content -->
   <main>
-    <h1>Free Online Age Calculator</h1>
-    <p>Enter your date of birth below to calculate your exact age in years, months, days, hours, minutes, and seconds.</p>
-    
-    <div class="calculator">
-      <input type="date" id="dob">
-      <button onclick="calculateAge()">Calculate Age</button>
-      <div id="result"></div>
-    </div>
+    <section id="calculator">
+      <h1>Free Online Age Calculator</h1>
+      <p>Enter your date of birth below to calculate your exact age in years, months, days, hours, minutes, and seconds.</p>
+      
+      <div class="calculator">
+        <input type="date" id="dob">
+        <button onclick="calculateAge()">Calculate Age</button>
+        <div id="result"></div>
+      </div>
+    </section>
+
+    <!-- ✅ About Section -->
+    <section id="about" style="margin-top:50px;">
+      <h2>About</h2>
+      <p>This tool helps you calculate your exact age instantly in different formats including years, months, days, hours, minutes, and seconds.</p>
+    </section>
+
+    <!-- ✅ Privacy Section -->
+    <section id="privacy" style="margin-top:50px;">
+      <h2>Privacy Policy</h2>
+      <p>We respect your privacy. No data is stored or shared. The calculation runs directly in your browser.</p>
+    </section>
+
+    <!-- ✅ Disclaimer Section -->
+    <section id="disclaimer" style="margin-top:50px;">
+      <h2>Disclaimer</h2>
+      <p>This calculator is provided for informational purposes only. We do not guarantee 100% accuracy.</p>
+    </section>
+
+    <!-- ✅ Contact Section -->
+    <section id="contact" style="margin-top:50px;">
+      <h2>Contact</h2>
+      <p>For queries, please reach out to us at <a href="mailto:info@calculatorage.net">info@calculatorage.net</a>.</p>
+    </section>
   </main>
 
   <!-- ✅ JavaScript -->
