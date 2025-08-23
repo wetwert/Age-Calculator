@@ -1,109 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator | CalculatorAge.net</title>
+  <meta name="description" content="Use our Age Calculator to find your exact age in years, months, and days instantly. Simple, fast, and accurate.">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png" />
-    <link rel="shortcut icon" href="https://calculatorage.net/favicon.png" type="image/png" />
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png">
+  
+  <style>
+    /* ====== Header Base ====== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-    <!-- Title for SEO -->
-    <title>Age Calculator | Calculate Exact Age in Seconds</title>
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-    <!-- Meta Description -->
-    <meta name="description" content="Use our Age Calculator to find your exact age in years, months, days, hours, minutes, and even seconds. 100% free and accurate online tool." />
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    <!-- Meta Keywords -->
-    <meta name="keywords" content="Age Calculator, Online Age Calculator, Calculate Age, Exact Age Finder, Birthday Age Calculator, Date of Birth Calculator" />
+    header .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://calculatorage.net/" />
+    header nav ul {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
 
-    <!-- Open Graph (Facebook/WhatsApp Preview) -->
-    <meta property="og:title" content="Age Calculator | Calculate Exact Age in Seconds" />
-    <meta property="og:description" content="Find your exact age in years, months, days, hours, minutes, and even seconds with our free online Age Calculator." />
-    <meta property="og:image" content="https://calculatorage.net/favicon.png" />
-    <meta property="og:url" content="https://calculatorage.net/" />
-    <meta property="og:type" content="website" />
+    header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Age Calculator | Calculate Exact Age in Seconds" />
-    <meta name="twitter:description" content="Check your exact age instantly in years, months, days, hours, and minutes with our free online Age Calculator." />
-    <meta name="twitter:image" content="https://calculatorage.net/favicon.png" />
+    header nav ul li a:hover {
+      text-decoration: underline;
+    }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
 
-    <!-- Custom Styles -->
-    <style>
-      body {
-        margin: 0;
-        font-family: "Inter", sans-serif;
+    /* ====== Mobile Styles ====== */
+    @media (max-width: 768px) {
+      header nav ul {
+        display: none;
+        flex-direction: column;
+        background: #4CAF50;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        padding: 10px;
+        border-radius: 10px;
       }
-      header {
+
+      header nav ul.show {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 30px;
-        background: #2c3e50;
-        color: white;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
       }
-      header .logo {
-        font-size: 20px;
-        font-weight: 700;
-      }
-      nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        gap: 20px;
-      }
-      nav ul li {
-        display: inline;
-      }
-      nav ul li a {
-        text-decoration: none;
-        color: white;
-        font-weight: 500;
-        transition: 0.3s;
-      }
-      nav ul li a:hover {
-        color: #1abc9c;
-      }
-    </style>
 
-    <!-- Scripts & Styles -->
-    <script type="module" crossorigin src="/assets/index-C63etm24.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CML18nd8.css">
-  </head>
-  <body>
-    
-    <!-- HEADER START -->
-    <header>
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* ====== Page Content ====== */
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Responsive Header -->
+  <header>
+    <div class="container">
       <div class="logo">Age Calculator</div>
-      <nav>
+      <nav id="navbar">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about.html">About Us</a></li>
-          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="/disclaimer.html">Disclaimer</a></li>
-          <li><a href="/contact.html">Contact Us</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
         </ul>
       </nav>
-    </header>
-    <!-- HEADER END -->
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+    </div>
+  </header>
 
-    <div id="root"></div>
+  <!-- ✅ Page Main Content -->
+  <main>
+    <h1>Welcome to Age Calculator</h1>
+    <p>Use our free online age calculator to calculate your exact age in years, months, and days instantly.</p>
+  </main>
 
-    <!-- Replit Dev Banner -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
-  </body>
+  <!-- ✅ JavaScript for Menu -->
+  <script>
+    document.getElementById("menu-toggle").onclick = function() {
+      document.querySelector("nav ul").classList.toggle("show");
+    };
+  </script>
+
+</body>
 </html>
