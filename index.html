@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Age Calculator | CalculatorAge.net</title>
 
+  <!-- Meta Description for SEO -->
+  <meta name="description" content="Use our free Age Calculator to find your exact age in years, months, days, hours, minutes, and seconds. Fast and accurate calculation online.">
+
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png">
+  <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png" />
 
   <!-- Styles -->
   <style>
@@ -14,6 +17,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
+      color: #000;
     }
 
     /* Header */
@@ -53,6 +57,10 @@
       font-size: 16px;
     }
 
+    .nav a:hover {
+      text-decoration: underline;
+    }
+
     .language {
       padding: 8px 12px;
       border: 1px solid #ddd;
@@ -67,10 +75,28 @@
       text-align: center;
     }
 
+    .main h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
     iframe {
       width: 100%;
+      max-width: 900px;
       height: 650px;
       border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      border-top: 1px solid #ddd;
+      background: #f9f9f9;
     }
   </style>
 </head>
@@ -95,6 +121,11 @@
     <h2>Age Calculator</h2>
     <iframe src="https://agewizard.sjawalkhan.repl.co" title="Age Calculator"></iframe>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 CalculatorAge.net | All Rights Reserved.
+  </footer>
 
 </body>
 </html>
