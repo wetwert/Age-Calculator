@@ -1,131 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Age Calculator | CalculatorAge.net</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-  <!-- Meta Description for SEO -->
-  <meta name="description" content="Use our free Age Calculator to find your exact age in years, months, days, hours, minutes, and seconds. Fast and accurate calculation online.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png" />
+    <link rel="shortcut icon" href="https://calculatorage.net/favicon.png" type="image/png" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png" />
+    <!-- Title for SEO -->
+    <title>Age Calculator | Calculate Exact Age in Seconds</title>
 
-  <!-- Styles -->
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #000;
-    }
+    <!-- Meta Description -->
+    <meta name="description" content="Use our Age Calculator to find your exact age in years, months, days, hours, minutes, and even seconds. 100% free and accurate online tool." />
 
-    /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      border-bottom: 2px solid #000;
-    }
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="Age Calculator, Online Age Calculator, Calculate Age, Exact Age Finder, Birthday Age Calculator, Date of Birth Calculator" />
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://calculatorage.net/" />
 
-    .logo img {
-      height: 40px;
-      margin-right: 10px;
-    }
+    <!-- Open Graph (Facebook/WhatsApp Preview) -->
+    <meta property="og:title" content="Age Calculator | Calculate Exact Age in Seconds" />
+    <meta property="og:description" content="Find your exact age in years, months, days, hours, minutes, and even seconds with our free online Age Calculator." />
+    <meta property="og:image" content="https://calculatorage.net/favicon.png" />
+    <meta property="og:url" content="https://calculatorage.net/" />
+    <meta property="og:type" content="website" />
 
-    .logo h1 {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 0;
-    }
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Age Calculator | Calculate Exact Age in Seconds" />
+    <meta name="twitter:description" content="Check your exact age instantly in years, months, days, hours, and minutes with our free online Age Calculator." />
+    <meta name="twitter:image" content="https://calculatorage.net/favicon.png" />
 
-    .nav {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-    }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    .nav a {
-      text-decoration: none;
-      color: #000;
-      font-size: 16px;
-    }
+    <!-- CSS -->
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+      }
 
-    .nav a:hover {
-      text-decoration: underline;
-    }
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        background: #ffffff;
+        border-bottom: 1px solid #eee;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
 
-    .language {
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      cursor: pointer;
-      background: #fff;
-    }
+      .logo {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+        text-decoration: none;
+      }
 
-    /* Main Content */
-    .main {
-      padding: 20px;
-      text-align: center;
-    }
+      .logo img {
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+      }
 
-    .main h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+      }
 
-    iframe {
-      width: 100%;
-      max-width: 900px;
-      height: 650px;
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+      nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: 0.3s;
+      }
 
-    /* Footer */
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-      border-top: 1px solid #ddd;
-      background: #f9f9f9;
-    }
-  </style>
-</head>
-<body>
+      nav ul li a:hover {
+        color: #007bff;
+      }
+    </style>
 
-  <!-- Header -->
-  <div class="header">
-    <div class="logo">
-      <img src="https://calculatorage.net/favicon.png" alt="Logo">
-      <h1>CalculatorAge.net</h1>
-    </div>
-    <div class="nav">
-      <a href="#">Home</a>
-      <a href="#">Blog</a>
-      <a href="#">Contact Us</a>
-      <div class="language">🌐 English ▼</div>
-    </div>
-  </div>
+    <!-- Scripts & Styles -->
+    <script type="module" crossorigin src="/assets/index-C63etm24.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CML18nd8.css">
+  </head>
+  <body>
 
-  <!-- Main Section -->
-  <div class="main">
-    <h2>Age Calculator</h2>
-    <iframe src="https://agewizard.sjawalkhan.repl.co" title="Age Calculator"></iframe>
-  </div>
+    <!-- Header -->
+    <header>
+      <a href="/" class="logo">
+        <img src="https://calculatorage.net/favicon.png" alt="Logo"> 
+        Age Calculator
+      </a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/tools.html">Tools</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    © 2025 CalculatorAge.net | All Rights Reserved.
-  </footer>
+    <!-- React Root -->
+    <div id="root"></div>
 
-</body>
+    <!-- Replit Dev Banner -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
 </html>
