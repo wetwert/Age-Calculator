@@ -1,44 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator | CalculatorAge.net</title>
 
-    <!-- ✅ SEO Optimized Title -->
-    <title>Age Calculator | Calculate Exact Age in 2 Seconds</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png">
 
-    <!-- ✅ Meta Description -->
-    <meta name="description" content="See your full age in years, months, days, hours, even seconds. Discover fun facts like heartbeats, sleep hours, and your age on other planets." />
+  <!-- Styles -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+    }
 
-    <!-- ✅ SEO Keywords -->
-    <meta name="keywords" content="age calculator, calculate age, exact age calculator, birthday calculator, how old am I, age in years months days, age on planets, online age calculator, date of birth calculator, age counter, life calculator" />
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      border-bottom: 2px solid #000;
+    }
 
-    <!-- ✅ Open Graph for Social Sharing -->
-    <meta property="og:title" content="Age Calculator | Calculate Exact Age in 2 Seconds" />
-    <meta property="og:description" content="Find your exact age in years, months, days, hours, and seconds with our advanced age calculator. Also see your age on planets like Mars and Jupiter." />
-    <meta property="og:type" content="Age Calculator" />
-    <meta property="og:url" content="https://calculatorage.net/" />
-    <meta property="og:image" content="https://calculatorage.net/favicon.png" />
+    .logo {
+      display: flex;
+      align-items: center;
+    }
 
-    <!-- ✅ Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Age Calculator | Calculate Exact Age in 2 Seconds" />
-    <meta name="twitter:description" content="Calculate your exact age in seconds, months, years. Discover fun facts like sleep hours and heartbeats." />
-    <meta name="twitter:image" content="https://calculatorage.net/favicon.png" />
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
 
-    <!-- ✅ Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    .logo h1 {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 0;
+    }
 
-    <!-- ✅ CSS & JS -->
-    <script type="module" crossorigin src="/assets/index-C63etm24.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CML18nd8.css">
-  </head>
-  <body>
-    <div id="root"></div>
+    .nav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
 
-    <!-- Replit Dev Banner (ignore in production) -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
-  </body>
+    .nav a {
+      text-decoration: none;
+      color: #000;
+      font-size: 16px;
+    }
+
+    .language {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    /* Main Content */
+    .main {
+      padding: 20px;
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      height: 650px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <img src="https://calculatorage.net/favicon.png" alt="Logo">
+      <h1>CalculatorAge.net</h1>
+    </div>
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact Us</a>
+      <div class="language">🌐 English ▼</div>
+    </div>
+  </div>
+
+  <!-- Main Section -->
+  <div class="main">
+    <h2>Age Calculator</h2>
+    <iframe src="https://agewizard.sjawalkhan.repl.co" title="Age Calculator"></iframe>
+  </div>
+
+</body>
 </html>
