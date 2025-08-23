@@ -4,18 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age Calculator | CalculatorAge.net</title>
-  <meta name="description" content="Use our Age Calculator to find your exact age in years, months, and days instantly. Simple, fast, and accurate.">
+  <meta name="description" content="Use our Age Calculator to find your exact age in years, months, days, hours, minutes, and seconds instantly.">
 
   <!-- ✅ Favicon -->
   <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png">
   
   <style>
-    /* ====== Header Base ====== */
+    /* ====== Reset & Base ====== */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: #f4f4f4;
     }
 
+    /* ====== Header ====== */
     header {
       background: #4CAF50;
       color: white;
@@ -61,7 +63,6 @@
       cursor: pointer;
     }
 
-    /* ====== Mobile Styles ====== */
     @media (max-width: 768px) {
       header nav ul {
         display: none;
@@ -74,30 +75,66 @@
         padding: 10px;
         border-radius: 10px;
       }
-
       header nav ul.show {
         display: flex;
       }
-
       .menu-toggle {
         display: block;
       }
     }
 
-    /* ====== Page Content ====== */
+    /* ====== Calculator Box ====== */
     main {
-      padding: 20px;
+      padding: 30px;
       text-align: center;
+    }
+
+    .calculator {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input[type="date"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
     }
   </style>
 </head>
 <body>
 
-  <!-- ✅ Responsive Header -->
+  <!-- ✅ Header -->
   <header>
     <div class="container">
       <div class="logo">Age Calculator</div>
-      <nav id="navbar">
+      <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
@@ -110,18 +147,60 @@
     </div>
   </header>
 
-  <!-- ✅ Page Main Content -->
+  <!-- ✅ Main Content -->
   <main>
-    <h1>Welcome to Age Calculator</h1>
-    <p>Use our free online age calculator to calculate your exact age in years, months, and days instantly.</p>
+    <h1>Free Online Age Calculator</h1>
+    <p>Enter your date of birth below to calculate your exact age in years, months, days, hours, minutes, and seconds.</p>
+    
+    <div class="calculator">
+      <input type="date" id="dob">
+      <button onclick="calculateAge()">Calculate Age</button>
+      <div id="result"></div>
+    </div>
   </main>
 
-  <!-- ✅ JavaScript for Menu -->
+  <!-- ✅ JavaScript -->
   <script>
+    // Toggle Menu
     document.getElementById("menu-toggle").onclick = function() {
       document.querySelector("nav ul").classList.toggle("show");
     };
-  </script>
 
+    // Age Calculator
+    function calculateAge() {
+      let dob = document.getElementById("dob").value;
+      if (!dob) {
+        document.getElementById("result").innerHTML = "⚠️ Please enter your date of birth.";
+        return;
+      }
+
+      let dobDate = new Date(dob);
+      let now = new Date();
+
+      let ageInMs = now - dobDate;
+
+      let years = now.getFullYear() - dobDate.getFullYear();
+      let months = now.getMonth() - dobDate.getMonth();
+      let days = now.getDate() - dobDate.getDate();
+
+      if (days < 0) {
+        months--;
+        days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      let hours = Math.floor(ageInMs / (1000 * 60 * 60));
+      let minutes = Math.floor(ageInMs / (1000 * 60));
+      let seconds = Math.floor(ageInMs / 1000);
+
+      document.getElementById("result").innerHTML = 
+        `<b>Your Age:</b><br>
+         ${years} Years, ${months} Months, ${days} Days <br>
+         OR ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds`;
+    }
+  </script>
 </body>
 </html>
