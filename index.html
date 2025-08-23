@@ -34,60 +34,49 @@
     <meta name="twitter:image" content="https://calculatorage.net/favicon.png" />
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
+    <!-- Custom Styles -->
     <style>
       body {
         margin: 0;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Inter", sans-serif;
       }
-
-      /* Header */
       header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 40px;
-        background: #ffffff;
-        border-bottom: 1px solid #eee;
+        padding: 15px 30px;
+        background: #2c3e50;
+        color: white;
         position: sticky;
         top: 0;
         z-index: 1000;
       }
-
-      .logo {
-        display: flex;
-        align-items: center;
+      header .logo {
         font-size: 20px;
         font-weight: 700;
-        color: #333;
-        text-decoration: none;
       }
-
-      .logo img {
-        width: 32px;
-        height: 32px;
-        margin-right: 10px;
-      }
-
       nav ul {
         list-style: none;
-        display: flex;
-        gap: 25px;
         margin: 0;
         padding: 0;
+        display: flex;
+        gap: 20px;
       }
-
+      nav ul li {
+        display: inline;
+      }
       nav ul li a {
         text-decoration: none;
-        color: #333;
+        color: white;
         font-weight: 500;
         transition: 0.3s;
       }
-
       nav ul li a:hover {
-        color: #007bff;
+        color: #1abc9c;
       }
     </style>
 
@@ -96,24 +85,22 @@
     <link rel="stylesheet" crossorigin href="/assets/index-CML18nd8.css">
   </head>
   <body>
-
-    <!-- Header -->
+    
+    <!-- HEADER START -->
     <header>
-      <a href="/" class="logo">
-        <img src="https://calculatorage.net/favicon.png" alt="Logo"> 
-        Age Calculator
-      </a>
+      <div class="logo">Age Calculator</div>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/tools.html">Tools</a></li>
-          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
         </ul>
       </nav>
     </header>
+    <!-- HEADER END -->
 
-    <!-- React Root -->
     <div id="root"></div>
 
     <!-- Replit Dev Banner -->
