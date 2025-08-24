@@ -42,76 +42,86 @@
     <script type="module" crossorigin src="/assets/index-C63etm24.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-CML18nd8.css">
 
-    <!-- Custom Header CSS -->
+    <!-- ✅ Custom Header CSS -->
     <style>
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-  }
-  header {
-    background: #222;
-    color: #fff;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
-  header .logo {
-    font-size: 20px;
-    font-weight: bold;
-  }
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      header {
+        background: #222;
+        color: #fff;
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+      header .logo {
+        font-size: 20px;
+        font-weight: bold;
+      }
 
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-  }
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
 
-  /* ✅ Mobile styles */
-  @media(max-width: 768px) {
-    nav ul {
-      flex-direction: column;
-      background: #333;
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 200px;
-      display: none; /* 👈 by default hidden on mobile */
-      padding: 10px;
-    }
-    nav ul.show {
-      display: block; /* 👈 toggle se show hoga */
-    }
-    .menu-toggle {
-      display: block;
-      cursor: pointer;
-      font-size: 24px;
-    }
-  }
+      /* ✅ Mobile styles */
+      @media(max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          background: #333;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 200px;
+          display: none; /* 👈 by default hidden on mobile */
+          padding: 10px;
+          border-radius: 6px 0 0 6px;
+        }
+        nav ul.show {
+          display: block; /* 👈 toggle se show hoga */
+          animation: slideIn 0.3s ease;
+        }
+        .menu-toggle {
+          display: block;
+          cursor: pointer;
+          font-size: 26px;
+        }
+      }
 
-  /* ✅ Hide hamburger in desktop */
-  .menu-toggle {
-    display: none;
-    color: white;
-  }
-</style>
+      /* ✅ Hide hamburger in desktop */
+      .menu-toggle {
+        display: none;
+        color: white;
+        background: none;
+        border: none;
+      }
+
+      /* Slide animation */
+      @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+    </style>
   </head>
   <body>
     <!-- ✅ Header above calculator -->
     <header>
       <div class="logo">Age Calculator</div>
-      <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</div>
+      <button class="menu-toggle" aria-label="Toggle Menu">☰</button>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
@@ -125,14 +135,16 @@
 
     <!-- ✅ Calculator will render here -->
     <div id="root"></div>
-<script>
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navMenu = document.querySelector("nav ul");
 
-  menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("show");
-  });
-</script>
+    <!-- ✅ Menu Toggle Script -->
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navMenu = document.querySelector("nav ul");
+
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+      });
+    </script>
 
     <!-- Replit Banner -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
