@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://your-favicon-url.com/favicon.png" />
-    <link rel="shortcut icon" href="https://your-favicon-url.com/favicon.png" type="image/png" />
+    <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png" />
+    <link rel="shortcut icon" href="https://calculatorage.net/favicon.png" type="image/png" />
 
     <!-- Title for SEO -->
     <title>Age Calculator | Calculate Exact Age in Seconds</title>
@@ -21,4 +21,132 @@
     <link rel="canonical" href="https://calculatorage.net/" />
 
     <!-- Open Graph -->
-    <meta
+    <meta property="og:title" content="Age Calculator | Calculate Exact Age in Seconds" />
+    <meta property="og:description" content="Find your exact age in years, months, days, hours, minutes, and even seconds with our free online Age Calculator." />
+    <meta property="og:image" content="https://calculatorage.net/favicon.png" />
+    <meta property="og:url" content="https://calculatorage.net/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Age Calculator | Calculate Exact Age in Seconds" />
+    <meta name="twitter:description" content="Check your exact age instantly in years, months, days, hours, and minutes with our free online Age Calculator." />
+    <meta name="twitter:image" content="https://calculatorage.net/favicon.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS & JS Bundles -->
+    <script type="module" crossorigin src="/assets/index-C63etm24.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CML18nd8.css">
+
+    <!-- ✅ Custom Header CSS -->
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      header {
+        background: #222;
+        color: #fff;
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+      header .logo {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      /* ✅ Mobile styles */
+      @media(max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          background: #333;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 200px;
+          display: none; /* 👈 by default hidden on mobile */
+          padding: 10px;
+          border-radius: 6px 0 0 6px;
+        }
+        nav ul.show {
+          display: block; /* 👈 toggle se show hoga */
+          animation: slideIn 0.3s ease;
+        }
+        .menu-toggle {
+          display: block;
+          cursor: pointer;
+          font-size: 26px;
+        }
+      }
+
+      /* ✅ Hide hamburger in desktop */
+      .menu-toggle {
+        display: none;
+        color: white;
+        background: none;
+        border: none;
+      }
+
+      /* Slide animation */
+      @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ✅ Header above calculator -->
+    <header>
+      <div class="logo">Age Calculator</div>
+      <button class="menu-toggle" aria-label="Toggle Menu">☰</button>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ✅ Calculator will render here -->
+    <div id="root"></div>
+
+    <!-- ✅ Menu Toggle Script -->
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navMenu = document.querySelector("nav ul");
+
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+      });
+    </script>
+
+    <!-- Replit Banner -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
+</html>
