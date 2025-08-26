@@ -7,56 +7,108 @@
   <meta name="description" content="Free BMI Calculator (Metric & Imperial). Get your BMI, category, healthy weight range for your height, & share/copy results.">
   <meta name="keywords" content="BMI calculator, body mass index, healthy weight range, metric, imperial, kg, cm, lb, ft inch">
   <link rel="canonical" href="https://calculatorage.net/pages/bmi.html">
-  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+  <meta name="robots" content="index,follow">
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="BMI Calculator – Body Mass Index (Metric/Imperial)">
-  <meta property="og:description" content="Calculate BMI, see category & healthy weight range for your height. Metric and Imperial supported.">
-  <meta property="og:url" content="https://calculatorage.net/pages/bmi.html">
-  <meta property="og:site_name" content="CalculatorAge">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="BMI Calculator – Body Mass Index (Metric/Imperial)">
-  <meta name="twitter:description" content="Quick BMI, category, healthy weight range.">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="../style.css">
-  <!-- Scoped CSS omitted for brevity -->
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fb; color:#222; }
+    .wrap { max-width: 850px; margin: 30px auto; padding: 20px; background:#fff; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+    h1 { margin-top:0; }
+    .segmented { display:inline-flex; border:1px solid #ccc; border-radius:20px; overflow:hidden; margin-bottom:20px; }
+    .segmented button { padding:8px 16px; border:none; background:#eee; cursor:pointer; }
+    .segmented button.active { background:#007bff; color:#fff; }
+    .controls { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    label { font-weight:600; }
+    input { padding:10px; border:1px solid #ccc; border-radius:6px; }
+    .btn { margin-top:15px; padding:10px 15px; border:none; border-radius:6px; background:#007bff; color:#fff; cursor:pointer; }
+    .btn:hover { opacity:0.9; }
+    .result { margin-top:20px; padding:15px; background:#f1f3f9; border-radius:8px; }
+    .bmiBig { font-size:40px; font-weight:bold; }
+    footer { margin-top:40px; text-align:center; font-size:14px; color:#555; }
+  </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="site-header">
-      <a class="back-link" href="../index.html">← All Calculators</a>
-      <h1 style="margin:0;">BMI Calculator</h1>
-    </header>
-    <p class="muted">Body Mass Index calculator with metric/imperial units, category scale, and healthy weight range.</p>
+    <a href="../index.html">← All Calculators</a>
+    <h1>BMI Calculator</h1>
+    <p>Body Mass Index calculator with metric/imperial units, category scale, and healthy weight range.</p>
 
-    <!-- Calculator UI & logic here -->
-    <!-- FAQ Section for SEO -->
-    <section class="faq">
-      <h2>Frequently Asked Questions</h2>
-      <dl>
-        <dt>What is BMI?</dt>
-        <dd>Body Mass Index compares weight to height to estimate weight status.</dd>
-        <dt>What is a healthy BMI?</dt>
-        <dd>Generally 18.5–24.9 is normal; 25–29.9 overweight; 30+ obese.</dd>
-        <dt>Is BMI accurate for athletes?</dt>
-        <dd>May overestimate body fat in muscular individuals.</dd>
-      </dl>
-    </section>
+    <div class="segmented">
+      <button id="btnMetric" class="active">Metric (kg, cm)</button>
+      <button id="btnImperial">Imperial (lb, ft+in)</button>
+    </div>
+
+    <div id="metricFields" class="controls">
+      <div><label>Weight (kg)</label><input id="wkg" type="number" placeholder="70"></div>
+      <div><label>Height (cm)</label><input id="hcm" type="number" placeholder="175"></div>
+    </div>
+
+    <div id="imperialFields" class="controls" style="display:none;">
+      <div><label>Weight (lb)</label><input id="wlb" type="number" placeholder="154"></div>
+      <div>
+        <label>Height</label>
+        <div style="display:flex;gap:5px;">
+          <input id="hft" type="number" placeholder="ft">
+          <input id="hin" type="number" placeholder="in">
+        </div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="calc()">Calculate BMI</button>
+
+    <div class="result">
+      <div class="bmiBig" id="bmiVal">—</div>
+      <div id="bmiCat">Enter your details</div>
+      <div id="rangeOut"></div>
+    </div>
   </div>
 
-  <footer class="footer">
-    <p>© 2025 CalculatorAge. All rights reserved.</p>
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+  <footer>
+    © 2025 CalculatorAge. All rights reserved. | <a href="../index.html">Home</a>
   </footer>
 
-  <script>
-    // JavaScript logic for metric/imperial conversion, UI updates, and sharing/copy
-  </script>
+<script>
+function calc(){
+  let bmi=null; let heightCm=null;
+  if(document.getElementById("btnMetric").classList.contains("active")){
+    const w=parseFloat(document.getElementById("wkg").value);
+    const h=parseFloat(document.getElementById("hcm").value);
+    if(w>0 && h>0){ bmi=w/((h/100)*(h/100)); heightCm=h; }
+  } else {
+    const w=parseFloat(document.getElementById("wlb").value);
+    const ft=parseFloat(document.getElementById("hft").value);
+    const inch=parseFloat(document.getElementById("hin").value);
+    const totalIn=ft*12+(inch||0);
+    if(w>0 && totalIn>0){ bmi=(w/(totalIn*totalIn))*703; heightCm=totalIn*2.54; }
+  }
+  if(bmi){
+    const val=(Math.round(bmi*10)/10);
+    document.getElementById("bmiVal").textContent=val;
+    let cat="";
+    if(val<18.5) cat="Underweight";
+    else if(val<25) cat="Normal";
+    else if(val<30) cat="Overweight";
+    else cat="Obese";
+    document.getElementById("bmiCat").textContent=cat;
+
+    if(heightCm){
+      const min=(18.5*((heightCm/100)**2)).toFixed(1);
+      const max=(24.9*((heightCm/100)**2)).toFixed(1);
+      document.getElementById("rangeOut").textContent="Healthy range: "+min+" – "+max+" kg";
+    }
+  }
+}
+document.getElementById("btnMetric").onclick=()=>{ 
+  document.getElementById("btnMetric").classList.add("active");
+  document.getElementById("btnImperial").classList.remove("active");
+  document.getElementById("metricFields").style.display="grid";
+  document.getElementById("imperialFields").style.display="none";
+}
+document.getElementById("btnImperial").onclick=()=>{ 
+  document.getElementById("btnImperial").classList.add("active");
+  document.getElementById("btnMetric").classList.remove("active");
+  document.getElementById("metricFields").style.display="none";
+  document.getElementById("imperialFields").style.display="grid";
+}
+</script>
 </body>
 </html>
