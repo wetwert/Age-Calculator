@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Loan Calculator – Monthly Payment (EMI), Amortization Schedule & Payoff Date</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Free Loan Calculator. Compute monthly payment (EMI), total interest, payoff date, and full amortization schedule. Supports extra monthly payments & CSV download." />
+  <meta name="keywords" content="loan calculator, EMI calculator, loan amortization schedule, monthly payment calculator, payoff date calculator">
+  <link rel="canonical" href="https://calculatorage.net/loan-calculator.html" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Loan Calculator – EMI, Schedule & Payoff Date" />
+  <meta property="og:description" content="Compute monthly payment, total interest, payoff date, and download the amortization schedule as CSV." />
+  <meta property="og:url" content="https://calculatorage.net/loan-calculator.html" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Minimal, self-contained styles (same look as BMI page family) -->
+  <style>
+    :root{--brand:#0d6efd;--muted:#667085;--card:#fff;--border:#e9e9ef;--bg:#f5f7fb}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    a{color:var(--brand);text-decoration:none}
+    header{max-width:960px;margin:26px auto 6px;padding:0 16px}
+    main{max-width:960px;margin:0 auto 26px;padding:0 16px}
+    .muted{color:var(--muted);font-size:14px}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+    label{font-weight:600}
+    input{width:100%;padding:12px;border:1px solid #d8dbe6;border-radius:10px;outline:none}
+    input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(13,110,253,.12)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{border:0;border-radius:10px;padding:12px 14px;background:var(--brand);color:#fff;cursor:pointer;font-weight:600}
+    .btn.ghost{background:#eef2ff;color:#1f3a93}
+    .btn.secondary{background:#0a58ca}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+    @media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    .box{border:1px solid var(--border);border-radius:14px;background:#fbfbfc;padding:16px}
+    .statTitle{margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:.3px;text-transform:uppercase}
+    .big{margin:0;font-size:36px;font-weight:800}
+    table{width:100%;border-collapse:collapse;margin-top:10px;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    thead{background:#f6f7fb}
+    th,td{padding:10px 12px;border-bottom:1px solid #f0f0f5;text-align:right}
+    th:first-child,td:first-child{text-align:left}
+    tfoot td{font-weight:700;background:#fafbff}
+    .toggle{margin-top:10px}
+    footer{border-top:1px solid var(--border);background:#f7f7f9}
+    footer .inner{max-width:960px;margin:0 auto;padding:16px;color:#444;font-size:14px;text-align:center}
+  </style>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Loan Calculator",
+    "url":"https://calculatorage.net/loan-calculator.html",
+    "applicationCategory":"FinanceApplication",
+    "isAccessibleForFree":true,
+    "inLanguage":"en",
+    "description":"Calculate loan monthly payment (EMI), total interest, payoff date, and download the amortization schedule."
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <a href="index.html" aria-label="Back to Home">← All Calculators</a>
+    <h1 style="margin:8px 0 6px">Loan Calculator</h1>
+    <p class="muted">Monthly payment (EMI), total interest, payoff date & full amortization schedule. Supports extra monthly payments.</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-label="Loan Calculator">
+      <div class="grid">
+        <div>
+          <label for="amount">Loan amount</label>
+          <input id="amount" type="number" min="0" step="0.01" placeholder="e.g. 25000" />
+        </div>
+        <div>
+          <label for="rate">Annual interest rate (%)</label>
+          <input id="rate" type="number" min="0" step="0.01" placeholder="e.g. 7.5" />
+        </div>
+        <div>
+          <label for="years">Term – years</label>
+          <input id="years" type="number" min="0" step="1" placeholder="e.g. 5" />
+        </div>
+        <div>
+          <label for="months">Term – extra months</label>
+          <input id="months" type="number" min="0" step="1" placeholder="0" />
+        </div>
+        <div>
+          <label for="extra">Extra monthly payment (optional)</label>
+          <input id="extra" type="number" min="0" step="0.01" placeholder="0" />
+        </div>
+        <div>
+          <label for="start">Start date (optional)</label>
+          <input id="start" type="date" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="calcBtn">Calculate</button>
+        <button class="btn ghost" id="resetBtn">Reset</button>
+        <button class="btn secondary" id="copyBtn">Copy Result</button>
+        <button class="btn" id="csvBtn">Download CSV</button>
+        <button class="btn" id="shareBtn">Share</button>
+      </div>
+
+      <div class="cards">
+        <div class="box">
+          <p class="statTitle">Monthly Payment</p>
+          <p class="big" id="pmt">—</p>
+          <p class="muted" id="pmtNote">Required payment (without extra)</p>
+        </div>
+        <div class="box">
+          <p class="statTitle">Total Interest</p>
+          <p class="big" id="intTotal">—</p>
+          <p class="muted" id="intNote">With extra payments applied</p>
+        </div>
+        <div class="box">
+          <p class="statTitle">Payoff Date</p>
+          <p class="big" id="payoff">—</p>
+          <p class="muted">Estimated (uses start date if provided)</p>
+        </div>
+      </div>
+
+      <div class="toggle">
+        <button class="btn ghost" id="toggleTable">Show full amortization schedule</button>
+      </div>
+
+      <div id="tableWrap" style="display:none">
+        <table aria-label="Amortization Schedule" id="sched">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Payment</th>
+              <th>Interest</th>
+              <th>Principal</th>
+              <th>Balance</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+          <tfoot>
+            <tr>
+              <td>Totals</td>
+              <td id="tPay">—</td>
+              <td id="tInt">—</td>
+              <td id="tPrin">—</td>
+              <td>—</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top:14px">
+      <h2 style="margin:0 0 6px">How it works</h2>
+      <p class="muted">We use the standard amortization formula. Monthly rate = APR/12. Payment =
+      <em>P·r / (1 − (1+r)<sup>−n</sup>)</em>, with a zero-interest fallback. Extra payments reduce principal faster and shorten term.</p>
+    </section>
+  </main>
+
+  <footer><div class="inner">© 2025 CalculatorAge. All rights reserved. • <a href="index.html">Home</a></div></footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const fmt = n => isFinite(n) ? n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) : "—";
+
+    function addMonths(date, m){
+      const d = new Date(date.getTime());
+      const day = d.getDate();
+      d.setMonth(d.getMonth()+m);
+      if (d.getDate() !== day) d.setDate(0);
+      return d;
+    }
+
+    function calcSchedule(P, apr, nMonths, extra, startDate){
+      const r = apr/100/12;
+      const reqPmt = r>0 ? (P*r)/(1-Math.pow(1+r,-nMonths)) : (P/nMonths);
+      const pay = reqPmt + (extra||0);
+
+      let bal = P, k=0, totInt=0, totPay=0, totPrin=0;
+      const rows=[];
+      let curDate = startDate ? new Date(startDate) : null;
+
+      while (bal>0 && k<1200){ // hard limit 100 years
+        k++;
+        const interest = r>0 ? bal*r : 0;
+        let principal = pay - interest;
+        if (principal<=0){ // if extra is negative or pay too small
+          principal = 0;
+        }
+        if (principal > bal){ // last payment trim
+          principal = bal;
+        }
+        const actualPay = principal + interest;
+        bal = Math.max(0, bal - principal);
+
+        totInt += interest; totPay += actualPay; totPrin += principal;
+        rows.push({
+          k,
+          pay: actualPay,
+          interest,
+          principal,
+          bal,
+          date: curDate ? addMonths(curDate,k) : null
+        });
+
+        if (bal<=0) break;
+      }
+
+      const payoffDate = rows.length && rows[rows.length-1].date ? rows[rows.length-1].date : null;
+      return { reqPmt, rows, totals:{int:totInt, pay:totPay, prin:totPrin}, payoffDate };
+    }
+
+    function render(){
+      const amount=parseFloat($("amount").value);
+      const rate=parseFloat($("rate").value);
+      const years=parseInt($("years").value||"0",10);
+      const months=parseInt($("months").value||"0",10);
+      const extra=parseFloat($("extra").value||"0");
+      const startStr=$("start").value;
+
+      const n = years*12 + months;
+      if(!(amount>0) || !(n>0) || !(rate>=0)){
+        alert("Please enter valid amount, rate and term."); return;
+      }
+
+      const startDate = startStr ? new Date(startStr+"T00:00:00") : null;
+      const out = calcSchedule(amount, rate, n, extra, startDate);
+
+      $("pmt").textContent = "₹ " + fmt(out.reqPmt); // currency-agnostic display
+      $("intTotal").textContent = "₹ " + fmt(out.totals.int);
+      if (out.payoffDate){
+        $("payoff").textContent = out.payoffDate.toLocaleDateString(undefined, {year:"numeric",month:"long"});
+      } else {
+        $("payoff").textContent = "—";
+      }
+
+      // Build table rows
+      const tbody=$("rows"); tbody.innerHTML="";
+      const fmtDate = d => d ? d.toLocaleDateString(undefined,{year:"numeric",month:"short"}) : "";
+      out.rows.forEach((r, idx)=>{
+        const tr=document.createElement("tr");
+        tr.innerHTML = `
+          <td>${r.k}</td>
+          <td>${fmt(r.pay)}</td>
+          <td>${fmt(r.interest)}</td>
+          <td>${fmt(r.principal)}</td>
+          <td>${fmt(r.bal)}</td>
+          <td>${fmtDate(r.date)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      $("tPay").textContent = fmt(out.totals.pay);
+      $("tInt").textContent = fmt(out.totals.int);
+      $("tPrin").textContent = fmt(out.totals.prin);
+
+      // By default show first 12 rows; user can toggle
+      const wrap=$("tableWrap");
+      wrap.style.display="block";
+      collapseTable(true);
+    }
+
+    function collapseTable(collapsed){
+      const tbody=$("rows");
+      const toggle=$("toggleTable");
+      const rows=[...tbody.querySelectorAll("tr")];
+      if (collapsed){
+        rows.forEach((tr,i)=>{ tr.style.display = (i<12) ? "" : "none"; });
+        toggle.textContent="Show full amortization schedule";
+        toggle.dataset.state="collapsed";
+      }else{
+        rows.forEach(tr=>tr.style.display="");
+        toggle.textContent="Hide amortization schedule";
+        toggle.dataset.state="expanded";
+      }
+    }
+
+    // CSV export
+    function downloadCSV(){
+      const tbody=$("rows");
+      if(!tbody.children.length){ alert("Calculate first."); return; }
+      const header = ["#","Payment","Interest","Principal","Balance","Date"];
+      const lines = [header.join(",")];
+      [...tbody.querySelectorAll("tr")].forEach(tr=>{
+        const cells=[...tr.children].map(td=> `"${td.textContent.replace(/"/g,'""')}"`);
+        lines.push(cells.join(","));
+      });
+      const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8;"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "amortization_schedule.csv";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    // Buttons
+    $("calcBtn").addEventListener("click", render);
+    $("resetBtn").addEventListener("click", ()=>{
+      ["amount","rate","years","months","extra","start"].forEach(id=>{const el=$(id); if(el) el.value="";});
+      $("pmt").textContent="—"; $("intTotal").textContent="—"; $("payoff").textContent="—";
+      $("rows").innerHTML=""; $("tableWrap").style.display="none";
+    });
+    $("toggleTable").addEventListener("click", (e)=>{
+      const collapsed = e.currentTarget.dataset.state !== "expanded";
+      collapseTable(!collapsed);
+    });
+    $("csvBtn").addEventListener("click", downloadCSV);
+    $("copyBtn").addEventListener("click", async ()=>{
+      const text = `Monthly Payment: ${$("pmt").textContent} | Total Interest: ${$("intTotal").textContent} | Payoff: ${$("payoff").textContent}`;
+      try{ await navigator.clipboard.writeText(text); alert("Copied!"); }catch{ alert("Copy failed. Copy manually:\\n"+text); }
+    });
+    $("shareBtn").addEventListener("click", async ()=>{
+      const text = `My loan: ${$("pmt").textContent}/mo, interest ${$("intTotal").textContent}, payoff ${$("payoff").textContent}.`;
+      if(navigator.share){ try{ await navigator.share({title:"Loan Result", text}); } catch(e){} }
+      else alert("Sharing not supported on this device.\\n\\n"+text);
+    });
+  </script>
+</body>
+</html>
