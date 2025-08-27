@@ -20,99 +20,224 @@
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <meta name="theme-color" content="#0d6efd">
 
-  <style>
-    *{box-sizing:border-box} 
-    body{margin:0;background:#f5f7fb;color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+ <style>
+  * { box-sizing: border-box; }
 
-    /* Header Style */
-    header {
-      background-color: #1e1e1e;
-      color: white;
-      padding: 10px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 18px;
-      flex-wrap: wrap;  /* Header ko responsive banane ke liye */
+  body {
+    margin: 0;
+    background: #f5f7fb;
+    color: #222;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  }
+
+  /* Header Style */
+  header {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    flex-wrap: wrap;  /* To make header links stack on mobile */
+  }
+
+  header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+    flex-basis: 100%;  /* Ensures logo takes full width on mobile */
+    text-align: center;
+  }
+
+  header nav {
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap; /* Stacking nav links on small screens */
+  }
+
+  header nav a {
+    color: white;
+    margin: 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+  header nav a:hover {
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+  }
+
+  /* Main Content */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .panel {
+    background: #fff;
+    border: 1px solid #e9e9ef;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 720px) {
+    .grid {
+      grid-template-columns: 1fr;
     }
 
-    header .logo {
-      font-size: 24px;
-      font-weight: bold;
-      margin-left: 20px;
-      flex: 1;
+    /* Form adjustments for smaller screens */
+    .panel {
+      padding: 10px;
     }
 
-    header nav {
-      margin-right: 20px;
-      flex: 2;
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
+    label {
+      font-size: 16px;
     }
 
-    header nav a {
-      color: white;
-      margin: 0 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-decoration: none;
-    }
-
-    header nav a:hover {
-      border-bottom: 2px solid white;
-      padding-bottom: 5px;
-    }
-
-    /* Main Content */
-    main{max-width:960px;margin:0 auto;padding:0 16px}
-    .muted{color:#667085;font-size:14px}
-    .panel{background:#fff;border:1px solid #e9e9ef;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width:720px){
-      .grid{grid-template-columns:1fr;}  /* Form inputs ko mobile pe stack karna */
-      .panel {padding: 10px;} /* Mobile par padding kam karna */
-    }
-    label{font-weight:600}
-    input, select{width:100%;padding:12px;border:1px solid #d8dbe6;border-radius:10px;outline:none}
-    input:focus, select:focus{border-color:#0d6efd;box-shadow:0 0 0 3px rgba(13,110,253,.12)}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{border:0;border-radius:10px;padding:12px 14px;background:#0d6efd;color:#fff;cursor:pointer;font-weight:600}
-    .btn.ghost{background:#eef2ff;color:#1f3a93}
-    .btn.secondary{background:#0a58ca}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
-    @media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
-    @media (max-width:640px){.cards{grid-template-columns:1fr}}
-
-    /* Stylish Footer */
-    footer {
-      background-color: #1e1e1e;
-      color: white;
-      padding: 30px 0;
+    input, select {
+      padding: 12px;
       font-size: 14px;
-      text-align: center;
     }
 
-    footer .inner {
-      max-width: 960px;
-      margin: 0 auto;
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
     }
 
-    footer .footer-links {
-      margin-top: 16px;
+    .btn {
+      padding: 12px 14px;
+      font-size: 14px;
     }
+  }
 
-    footer .footer-links a {
-      color: white;
-      margin: 0 12px;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
+  label {
+    font-weight: 600;
+  }
 
-    footer .footer-links a:hover {
-      border-bottom: 2px solid white;
-      padding-bottom: 5px;
+  input,
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8dbe6;
+    border-radius: 10px;
+    outline: none;
+  }
+
+  input:focus,
+  select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #0d6efd;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .btn.ghost {
+    background: #eef2ff;
+    color: #1f3a93;
+  }
+
+  .btn.secondary {
+    background: #0a58ca;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .cards {
+      grid-template-columns: 1fr 1fr;
     }
+  }
+
+  @media (max-width: 640px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .box {
+    border: 1px solid #e9e9ef;
+    border-radius: 14px;
+    background: #fbfbfc;
+    padding: 16px;
+  }
+
+  .statTitle {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: #6b7280;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+  }
+
+  .big {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 800;
+  }
+
+  /* Stylish Footer */
+  footer {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 30px 0;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  footer .inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  footer .footer-links {
+    margin-top: 16px;
+  }
+
+  footer .footer-links a {
+    color: white;
+    margin: 0 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  footer .footer-links a:hover {
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+  }
 </style>
 </head>
 <body>
