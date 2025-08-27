@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Percentage Calculator – Calculate Percentages, Increase & Decrease</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Free Percentage Calculator to calculate percentage, percentage increase, percentage decrease, and more. Get results instantly." />
+  <link rel="canonical" href="https://calculatorage.net/percentage-calculator.html" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Percentage Calculator – Calculate Percentages, Increase & Decrease" />
+  <meta property="og:description" content="Free Percentage Calculator to calculate percentage, percentage increase, percentage decrease, and more." />
+  <meta property="og:url" content="https://calculatorage.net/percentage-calculator.html" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0d6efd">
+
+  <style>
+    :root{--brand:#0d6efd;--muted:#667085;--card:#fff;--border:#e9e9ef;--bg:#f5f7fb}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    a{color:var(--brand);text-decoration:none}
+    header{max-width:960px;margin:26px auto 6px;padding:0 16px}
+    main{max-width:960px;margin:0 auto 26px;padding:0 16px}
+    .muted{color:var(--muted);font-size:14px}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+    label{font-weight:600}
+    input{width:100%;padding:12px;border:1px solid #d8dbe6;border-radius:10px;outline:none}
+    input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(13,110,253,.12)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{border:0;border-radius:10px;padding:12px 14px;background:var(--brand);color:#fff;cursor:pointer;font-weight:600}
+    .btn.ghost{background:#eef2ff;color:#1f3a93}
+    .btn.secondary{background:#0a58ca}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+    @media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    .box{border:1px solid var(--border);border-radius:14px;background:#fbfbfc;padding:16px}
+    .statTitle{margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:.3px;text-transform:uppercase}
+    .big{margin:0;font-size:36px;font-weight:800}
+    footer{border-top:1px solid var(--border);background:#f7f7f9}
+    footer .inner{max-width:960px;margin:0 auto;padding:16px;color:#444;font-size:14px;text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" aria-label="Back to Home">← Back to Homepage</a>
+    <h1 style="margin:8px 0 6px">Percentage Calculator</h1>
+    <p class="muted">Calculate percentage, percentage increase, percentage decrease, and more with ease.</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-label="Percentage Calculator">
+      <div class="grid">
+        <div>
+          <label for="value">Value</label>
+          <input id="value" type="number" min="0" step="0.01" placeholder="e.g. 200">
+        </div>
+        <div>
+          <label for="percentage">Percentage (%)</label>
+          <input id="percentage" type="number" min="0" step="0.1" placeholder="e.g. 10">
+        </div>
+        <div>
+          <label for="result">Result</label>
+          <input id="result" type="number" min="0" step="0.01" readonly>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="calcBtn">Calculate</button>
+        <button class="btn ghost" id="resetBtn">Reset</button>
+        <button class="btn secondary" id="copyBtn">Copy Result</button>
+        <button class="btn" id="shareBtn">Share</button>
+      </div>
+
+      <div class="cards">
+        <div class="box">
+          <p class="statTitle">Calculated Percentage</p>
+          <p class="big" id="percentageOut">—</p>
+          <p class="muted" id="calcNote">Percentage of the value</p>
+        </div>
+        <div class="box">
+          <p class="statTitle">Percentage Increase</p>
+          <p class="big" id="increaseOut">—</p>
+          <p class="muted" id="increaseNote">Amount added after the increase</p>
+        </div>
+        <div class="box">
+          <p class="statTitle">Percentage Decrease</p>
+          <p class="big" id="decreaseOut">—</p>
+          <p class="muted" id="decreaseNote">Amount deducted after the decrease</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="inner">© 2025 CalculatorAge. All rights reserved. • <a href="index.html">Home</a></div></footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const fmt = (n) => isFinite(n) ? n.toFixed(2) : "—";
+
+    function calc(){
+      const value = parseFloat($("value").value);
+      const percentage = parseFloat($("percentage").value);
+      if (isNaN(value) || isNaN(percentage)) {
+        return;
+      }
+
+      const result = (value * percentage) / 100;
+      const increase = value + result;
+      const decrease = value - result;
+
+      $("percentageOut").textContent = fmt(result);
+      $("increaseOut").textContent = fmt(increase);
+      $("decreaseOut").textContent = fmt(decrease);
+    }
+
+    $("calcBtn").addEventListener("click", calc);
+    $("resetBtn").addEventListener("click", () => {
+      ["value", "percentage", "result"].forEach(id => { const el = $(id); if (el) el.value = ""; });
+      $("percentageOut").textContent = "—";
+      $("increaseOut").textContent = "—";
+      $("decreaseOut").textContent = "—";
+    });
+
+    $("copyBtn").addEventListener("click", async () => {
+      const text = `Percentage: ${$("percentageOut").textContent} | Increase: ${$("increaseOut").textContent} | Decrease: ${$("decreaseOut").textContent}`;
+      try { await navigator.clipboard.writeText(text); alert("Copied!"); } catch { alert("Copy failed. Copy manually:\n" + text); }
+    });
+
+    $("shareBtn").addEventListener("click", async () => {
+      const text = `My calculation:\nPercentage: ${$("percentageOut").textContent}\nIncrease: ${$("increaseOut").textContent}\nDecrease: ${$("decreaseOut").textContent}`;
+      if (navigator.share) { try { await navigator.share({ title: "Percentage Result", text }); } catch { } }
+      else alert("Sharing not supported on this device.\n\n" + text);
+    });
+  </script>
+</body>
+</html>
