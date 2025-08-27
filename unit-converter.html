@@ -24,7 +24,11 @@
     :root{--brand:#0d6efd;--muted:#667085;--card:#fff;--border:#e9e9ef;--bg:#f5f7fb}
     *{box-sizing:border-box} body{margin:0;background:var(--bg);color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
     a{color:var(--brand);text-decoration:none}
-    header{max-width:960px;margin:26px auto 6px;padding:0 16px}
+    header{background-color:#0d6efd;padding:20px 0;color:white;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+    header .logo{font-size:32px;font-weight:bold}
+    header nav{margin-top:12px}
+    header nav a{color:white;margin:0 15px;text-transform:uppercase;letter-spacing:1px}
+    header nav a:hover{border-bottom:2px solid white;padding-bottom:5px}
     main{max-width:960px;margin:0 auto 26px;padding:0 16px}
     .muted{color:var(--muted);font-size:14px}
     .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
@@ -48,13 +52,21 @@
   </style>
 </head>
 <body>
-  <!-- Back to Homepage Button -->
+  <!-- Header Section -->
   <header>
-    <a href="/" aria-label="Back to Home" style="text-decoration:none; color: var(--brand); font-size:18px;">← Back to Homepage</a>
-    <h1 style="margin:8px 0 6px">Unit Converter</h1>
-    <p class="muted">Convert between multiple units of length, weight, temperature, and more.</p>
+    <div class="logo">
+      <a href="https://calculatorage.net" style="color: white;">CalculatorAge</a>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="bmi-calculator.html">BMI Calculator</a>
+      <a href="loan-calculator.html">Loan Calculator</a>
+      <a href="currency-converter.html">Currency Converter</a>
+      <a href="unit-converter.html">Unit Converter</a>
+    </nav>
   </header>
 
+  <!-- Main Content -->
   <main>
     <section class="panel" aria-label="Unit Converter">
       <div class="grid">
