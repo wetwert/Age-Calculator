@@ -31,11 +31,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 14px;
+      font-size: 18px;
     }
 
     header .logo {
-      font-size: 18px;
+      font-size: 24px;
       font-weight: bold;
       margin-left: 20px;
     }
@@ -76,8 +76,37 @@
     .box{border:1px solid #e9e9ef;border-radius:14px;background:#fbfbfc;padding:16px}
     .statTitle{margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:.3px;text-transform:uppercase}
     .big{margin:0;font-size:36px;font-weight:800}
-    footer{border-top:1px solid #e9e9ef;background:#f7f7f9}
-    footer .inner{max-width:960px;margin:0 auto;padding:16px;color:#444;font-size:14px;text-align:center}
+
+    /* Stylish Footer */
+    footer {
+      background-color: #1e1e1e;
+      color: white;
+      padding: 30px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    footer .inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    footer .footer-links {
+      margin-top: 16px;
+    }
+
+    footer .footer-links a {
+      color: white;
+      margin: 0 12px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    footer .footer-links a:hover {
+      border-bottom: 2px solid white;
+      padding-bottom: 5px;
+    }
+
   </style>
 </head>
 <body>
@@ -87,7 +116,7 @@
       <a href="https://calculatorage.net" style="color:white;">CalculatorAge</a>
     </div>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="https://calculatorage.net">Home</a> <!-- Correct Home Link -->
       <a href="bmi-calculator.html">BMI Calculator</a>
       <a href="loan-calculator.html">Loan Calculator</a>
       <a href="currency-converter.html">Currency Converter</a>
@@ -140,7 +169,19 @@
     </section>
   </main>
 
-  <footer><div class="inner">© 2025 CalculatorAge. All rights reserved. • <a href="index.html">Home</a></div></footer>
+  <!-- Footer Section -->
+  <footer>
+    <div class="inner">
+      <p>© 2025 CalculatorAge. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://calculatorage.net">Home</a> <!-- Correct Home Link in Footer -->
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="disclaimer.html">Disclaimer</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const $ = id => document.getElementById(id);
