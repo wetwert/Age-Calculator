@@ -21,7 +21,8 @@
   <meta name="theme-color" content="#0d6efd">
 
   <style>
-    *{box-sizing:border-box} body{margin:0;background:#f5f7fb;color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    *{box-sizing:border-box} 
+    body{margin:0;background:#f5f7fb;color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
 
     /* Header Style */
     header {
@@ -32,16 +33,22 @@
       justify-content: space-between;
       align-items: center;
       font-size: 18px;
+      flex-wrap: wrap;  /* Header ko responsive banane ke liye */
     }
 
     header .logo {
       font-size: 24px;
       font-weight: bold;
       margin-left: 20px;
+      flex: 1;
     }
 
     header nav {
       margin-right: 20px;
+      flex: 2;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
     }
 
     header nav a {
@@ -62,7 +69,10 @@
     .muted{color:#667085;font-size:14px}
     .panel{background:#fff;border:1px solid #e9e9ef;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+    @media (max-width:720px){
+      .grid{grid-template-columns:1fr;}  /* Form inputs ko mobile pe stack karna */
+      .panel {padding: 10px;} /* Mobile par padding kam karna */
+    }
     label{font-weight:600}
     input, select{width:100%;padding:12px;border:1px solid #d8dbe6;border-radius:10px;outline:none}
     input:focus, select:focus{border-color:#0d6efd;box-shadow:0 0 0 3px rgba(13,110,253,.12)}
@@ -73,9 +83,6 @@
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
     @media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
     @media (max-width:640px){.cards{grid-template-columns:1fr}}
-    .box{border:1px solid #e9e9ef;border-radius:14px;background:#fbfbfc;padding:16px}
-    .statTitle{margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:.3px;text-transform:uppercase}
-    .big{margin:0;font-size:36px;font-weight:800}
 
     /* Stylish Footer */
     footer {
@@ -106,8 +113,7 @@
       border-bottom: 2px solid white;
       padding-bottom: 5px;
     }
-
-  </style>
+</style>
 </head>
 <body>
   <!-- Header Section -->
