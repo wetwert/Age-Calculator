@@ -21,23 +21,27 @@
   <meta name="theme-color" content="#0d6efd">
 
   <style>
-    /* Basic Reset */
     *{box-sizing:border-box} body{margin:0;background:#f5f7fb;color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
 
     /* Header Style */
     header {
       background-color: #1e1e1e;
-      padding: 16px;
       color: white;
-      text-align: center;
-      font-size: 24px;
-      font-weight: 600;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
     }
 
     header .logo {
-      font-size: 32px;
+      font-size: 24px;
       font-weight: bold;
-      margin-bottom: 12px;
+      margin-left: 20px;
+    }
+
+    header nav {
+      margin-right: 20px;
     }
 
     header nav a {
@@ -53,6 +57,7 @@
       padding-bottom: 5px;
     }
 
+    /* Main Content */
     main{max-width:960px;margin:0 auto;padding:0 16px}
     .muted{color:#667085;font-size:14px}
     .panel{background:#fff;border:1px solid #e9e9ef;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
