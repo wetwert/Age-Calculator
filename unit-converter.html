@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Unit Converter – Convert Length, Weight, Temperature & More</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Free Unit Converter to convert between different units of length, weight, temperature, and more." />
+  <link rel="canonical" href="https://calculatorage.net/unit-converter.html" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Unit Converter – Convert Length, Weight, Temperature & More" />
+  <meta property="og:description" content="Convert length, weight, temperature, and other units with ease." />
+  <meta property="og:url" content="https://calculatorage.net/unit-converter.html" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Favicon from root -->
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <meta name="theme-color" content="#0d6efd">
+
+  <style>
+    :root{--brand:#0d6efd;--muted:#667085;--card:#fff;--border:#e9e9ef;--bg:#f5f7fb}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    a{color:var(--brand);text-decoration:none}
+    header{max-width:960px;margin:26px auto 6px;padding:0 16px}
+    main{max-width:960px;margin:0 auto 26px;padding:0 16px}
+    .muted{color:var(--muted);font-size:14px}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+    label{font-weight:600}
+    input, select{width:100%;padding:12px;border:1px solid #d8dbe6;border-radius:10px;outline:none}
+    input:focus, select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(13,110,253,.12)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{border:0;border-radius:10px;padding:12px 14px;background:var(--brand);color:#fff;cursor:pointer;font-weight:600}
+    .btn.ghost{background:#eef2ff;color:#1f3a93}
+    .btn.secondary{background:#0a58ca}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+    @media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    .box{border:1px solid var(--border);border-radius:14px;background:#fbfbfc;padding:16px}
+    .statTitle{margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:.3px;text-transform:uppercase}
+    .big{margin:0;font-size:36px;font-weight:800}
+    footer{border-top:1px solid var(--border);background:#f7f7f9}
+    footer .inner{max-width:960px;margin:0 auto;padding:16px;color:#444;font-size:14px;text-align:center}
+  </style>
+</head>
+<body>
+  <!-- Back to Homepage Button -->
+  <header>
+    <a href="/" aria-label="Back to Home" style="text-decoration:none; color: var(--brand); font-size:18px;">← Back to Homepage</a>
+    <h1 style="margin:8px 0 6px">Unit Converter</h1>
+    <p class="muted">Convert between multiple units of length, weight, temperature, and more.</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-label="Unit Converter">
+      <div class="grid">
+        <div>
+          <label for="value">Value</label>
+          <input id="value" type="number" min="0" step="0.01" placeholder="e.g. 100">
+        </div>
+        <div>
+          <label for="unitType">Unit Type</label>
+          <select id="unitType">
+            <option value="length">Length</option>
+            <option value="weight">Weight</option>
+            <option value="temperature">Temperature</option>
+          </select>
+        </div>
+        <div>
+          <label for="fromUnit">From Unit</label>
+          <select id="fromUnit">
+            <!-- Length options will populate here -->
+          </select>
+        </div>
+        <div>
+          <label for="toUnit">To Unit</label>
+          <select id="toUnit">
+            <!-- Length options will populate here -->
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="calcBtn">Convert</button>
+        <button class="btn ghost" id="resetBtn">Reset</button>
+      </div>
+
+      <div class="cards">
+        <div class="box">
+          <p class="statTitle">Converted Value</p>
+          <p class="big" id="convertedValue">—</p>
+          <p class="muted" id="conversionNote">Converted value based on selected units.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="inner">© 2025 CalculatorAge. All rights reserved. • <a href="index.html">Home</a></div></footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const fmt = (n) => isFinite(n) ? n.toFixed(2) : "—";
+
+    // Unit conversion data
+    const unitConversions = {
+      length: {
+        units: ['meters', 'kilometers', 'centimeters', 'millimeters', 'miles', 'yards', 'feet'],
+        conversions: {
+          meters: 1,
+          kilometers: 0.001,
+          centimeters: 100,
+          millimeters: 1000,
+          miles: 0.000621371,
+          yards: 1.09361,
+          feet: 3.28084
+        }
+      },
+      weight: {
+        units: ['grams', 'kilograms', 'milligrams', 'pounds', 'ounces'],
+        conversions: {
+          grams: 1,
+          kilograms: 0.001,
+          milligrams: 1000,
+          pounds: 0.00220462,
+          ounces: 0.035274
+        }
+      },
+      temperature: {
+        units: ['celsius', 'fahrenheit', 'kelvin'],
+        conversions: {
+          celsius: (value) => value,
+          fahrenheit: (value) => (value * 9/5) + 32,
+          kelvin: (value) => value + 273.15
+        }
+      }
+    };
+
+    function updateUnits() {
+      const unitType = $("unitType").value;
+      const units = unitConversions[unitType].units;
+      const fromUnitSelect = $("fromUnit");
+      const toUnitSelect = $("toUnit");
+      
+      fromUnitSelect.innerHTML = "";
+      toUnitSelect.innerHTML = "";
+
+      units.forEach(unit => {
+        const option = document.createElement("option");
+        option.value = unit;
+        option.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+        fromUnitSelect.appendChild(option);
+        
+        const option2 = document.createElement("option");
+        option2.value = unit;
+        option2.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+        toUnitSelect.appendChild(option2);
+      });
+    }
+
+    function convertValue() {
+      const unitType = $("unitType").value;
+      const fromUnit = $("fromUnit").value;
+      const toUnit = $("toUnit").value;
+      const value = parseFloat($("value").value);
+
+      if (isNaN(value)) return;
+
+      let result;
+
+      if (unitType === "length" || unitType === "weight") {
+        const fromFactor = unitConversions[unitType].conversions[fromUnit];
+        const toFactor = unitConversions[unitType].conversions[toUnit];
+        result = value * (toFactor / fromFactor);
+      } else if (unitType === "temperature") {
+        const tempConversion = unitConversions[unitType].conversions[fromUnit];
+        result = tempConversion(value);
+        if (toUnit === 'celsius') {
+          result = result - 273.15;
+        } else if (toUnit === 'fahrenheit') {
+          result = (result - 273.15) * 9/5 + 32;
+        }
+      }
+
+      $("convertedValue").textContent = fmt(result);
+    }
+
+    $("unitType").addEventListener("change", updateUnits);
+    $("calcBtn").addEventListener("click", convertValue);
+    $("resetBtn").addEventListener("click", () => {
+      ["value"].forEach(id => { const el = $(id); if (el) el.value = ""; });
+      $("convertedValue").textContent = "—";
+    });
+
+    updateUnits(); // Initial load of units based on default type
+  </script>
+</body>
+</html>
