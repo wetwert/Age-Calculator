@@ -223,7 +223,11 @@
   <script>
     function toggleMenu() {
       const mobileNav = document.querySelector('.mobile-nav');
-      mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+      if (mobileNav.style.display === 'flex') {
+        mobileNav.style.display = 'none';
+      } else {
+        mobileNav.style.display = 'flex';
+      }
     }
   </script>
 
