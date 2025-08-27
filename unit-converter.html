@@ -21,33 +21,57 @@
   <meta name="theme-color" content="#0d6efd">
 
   <style>
-    :root{--brand:#0d6efd;--muted:#667085;--card:#fff;--border:#e9e9ef;--bg:#f5f7fb}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    a{color:var(--brand);text-decoration:none}
-    header{background-color:#0d6efd;padding:20px 0;color:white;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,.1)}
-    header .logo{font-size:32px;font-weight:bold}
-    header nav{margin-top:12px}
-    header nav a{color:white;margin:0 15px;text-transform:uppercase;letter-spacing:1px}
-    header nav a:hover{border-bottom:2px solid white;padding-bottom:5px}
-    main{max-width:960px;margin:0 auto 26px;padding:0 16px}
-    .muted{color:var(--muted);font-size:14px}
-    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+    /* Basic Reset */
+    *{box-sizing:border-box} body{margin:0;background:#f5f7fb;color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+
+    /* Header Style */
+    header {
+      background-color: #1e1e1e;
+      padding: 16px;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    header .logo {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    header nav a {
+      color: white;
+      margin: 0 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    header nav a:hover {
+      border-bottom: 2px solid white;
+      padding-bottom: 5px;
+    }
+
+    main{max-width:960px;margin:0 auto;padding:0 16px}
+    .muted{color:#667085;font-size:14px}
+    .panel{background:#fff;border:1px solid #e9e9ef;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     @media (max-width:720px){.grid{grid-template-columns:1fr}}
     label{font-weight:600}
     input, select{width:100%;padding:12px;border:1px solid #d8dbe6;border-radius:10px;outline:none}
-    input:focus, select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(13,110,253,.12)}
+    input:focus, select:focus{border-color:#0d6efd;box-shadow:0 0 0 3px rgba(13,110,253,.12)}
     .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{border:0;border-radius:10px;padding:12px 14px;background:var(--brand);color:#fff;cursor:pointer;font-weight:600}
+    .btn{border:0;border-radius:10px;padding:12px 14px;background:#0d6efd;color:#fff;cursor:pointer;font-weight:600}
     .btn.ghost{background:#eef2ff;color:#1f3a93}
     .btn.secondary{background:#0a58ca}
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
     @media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
     @media (max-width:640px){.cards{grid-template-columns:1fr}}
-    .box{border:1px solid var(--border);border-radius:14px;background:#fbfbfc;padding:16px}
+    .box{border:1px solid #e9e9ef;border-radius:14px;background:#fbfbfc;padding:16px}
     .statTitle{margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:.3px;text-transform:uppercase}
     .big{margin:0;font-size:36px;font-weight:800}
-    footer{border-top:1px solid var(--border);background:#f7f7f9}
+    footer{border-top:1px solid #e9e9ef;background:#f7f7f9}
     footer .inner{max-width:960px;margin:0 auto;padding:16px;color:#444;font-size:14px;text-align:center}
   </style>
 </head>
@@ -55,7 +79,7 @@
   <!-- Header Section -->
   <header>
     <div class="logo">
-      <a href="https://calculatorage.net" style="color: white;">CalculatorAge</a>
+      <a href="https://calculatorage.net" style="color:white;">CalculatorAge</a>
     </div>
     <nav>
       <a href="index.html">Home</a>
