@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>BMI Calculator – Body Mass Index (Metric/Imperial) & Healthy Weight Range</title>
+  <title>BMI Calculator – Calculate Body Mass Index (Metric & Imperial)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Free BMI Calculator (Metric & Imperial). Get your BMI, category, healthy weight range for your height, & share/copy results." />
+  <meta name="description" content="Free BMI Calculator to calculate Body Mass Index (BMI) using metric & imperial units. Get your results instantly." />
   <link rel="canonical" href="https://calculatorage.net/bmi-calculator.html" />
   <meta name="robots" content="index, follow" />
-  <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png">
-  <link rel="shortcut icon" type="image/png" href="https://calculatorage.net/favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
   <meta name="theme-color" content="#0d6efd">
 
   <!-- WebPage Schema -->
@@ -16,8 +16,8 @@
     {
       "@context": "http://schema.org",
       "@type": "WebPage",
-      "name": "BMI Calculator – Body Mass Index (Metric/Imperial) & Healthy Weight Range",
-      "description": "Free BMI Calculator (Metric & Imperial). Get your BMI, category, healthy weight range for your height, & share/copy results.",
+      "name": "BMI Calculator – Calculate Body Mass Index (Metric & Imperial)",
+      "description": "Free BMI Calculator to calculate Body Mass Index (BMI) using metric & imperial units. Get your results instantly.",
       "url": "https://calculatorage.net/bmi-calculator.html"
     }
   </script>
@@ -30,18 +30,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do I calculate my BMI?",
+          "name": "How do I use the BMI Calculator?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "To calculate your BMI, input your weight and height into the BMI calculator. The tool will display your Body Mass Index and the corresponding category."
+            "text": "Simply input your weight and height. The calculator will instantly display your BMI and categorize your health status."
           }
         },
         {
           "@type": "Question",
-          "name": "What is a healthy BMI?",
+          "name": "Is the BMI Calculator free to use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A healthy BMI is typically between 18.5 and 24.9. Anything below 18.5 is considered underweight, and above 24.9 is considered overweight."
+            "text": "Yes, the BMI Calculator is completely free and accessible to anyone."
           }
         }
       ]
@@ -75,8 +75,8 @@
     {
       "@context": "http://schema.org",
       "@type": "Article",
-      "headline": "BMI Calculator: Calculate Your Body Mass Index",
-      "description": "Learn how to calculate your BMI and discover your healthy weight range using our free BMI calculator. The tool supports both metric and imperial units.",
+      "headline": "BMI Calculator: Effortless Health Assessment at Your Fingertips",
+      "description": "Calculate your Body Mass Index (BMI) easily with this tool. Enter your weight and height and get instant results.",
       "image": "https://calculatorage.net/favicon.png", 
       "author": {
         "@type": "Person",
@@ -97,27 +97,221 @@
   </script>
 
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fb; color:#222; }
-    .wrap { max-width: 850px; margin: 30px auto; padding: 20px; background:#fff; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-    h1 { margin-top:0; }
-    .segmented { display:inline-flex; border:1px solid #ccc; border-radius:20px; overflow:hidden; margin-bottom:20px; }
-    .segmented button { padding:8px 16px; border:none; background:#eee; cursor:pointer; }
-    .segmented button.active { background:#007bff; color:#fff; }
-    .controls { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    label { font-weight:600; }
-    input { padding:10px; border:1px solid #ccc; border-radius:6px; }
-    .btn { margin-top:15px; padding:10px 15px; border:none; border-radius:6px; background:#007bff; color:#fff; cursor:pointer; }
-    .btn:hover { opacity:0.9; }
-    .result { margin-top:20px; padding:15px; background:#f1f3f9; border-radius:8px; }
-    .bmiBig { font-size:40px; font-weight:bold; }
-    footer { margin-top:40px; text-align:center; font-size:14px; color:#555; }
+    :root {
+      --brand: #0d6efd;
+      --muted: #667085;
+      --card: #fff;
+      --border: #e9e9ef;
+      --bg: #f5f7fb;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #222;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 15px 20px;
+      color: white;
+    }
+
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    header nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    header nav a {
+      color: white;
+      font-size: 16px;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile Hamburger Menu */
+    .menu-icon {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #333;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .mobile-menu a {
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .mobile-menu a:hover {
+      background-color: #444;
+    }
+
+    @media (max-width: 768px) {
+      header nav {
+        display: none;
+      }
+
+      .menu-icon {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: none;
+      }
+
+      .mobile-menu.open {
+        display: flex;
+      }
+    }
+
+    /* Main Styles */
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+      margin-top: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8dbe6;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, .12);
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: var(--brand);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn.ghost {
+      background: #eef2ff;
+      color: #1f3a93;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: #333;
+      color: white;
+      padding: 16px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: white;
+    }
+
+    /* Stylish Container for Article */
+    .article-container {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .article-container h2 {
+      font-size: 28px;
+      color: var(--brand);
+    }
+
+    .article-container h3 {
+      font-size: 22px;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    .article-container p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .article-container ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
-
   <!-- Header with Mobile Menu -->
   <header>
-    <div class="logo"><a href='https://calculatorage.net/bmi-calculator.html'>BMI Calculator</a></div>
+    <div class="logo"><a href="https://calculatorage.net/bmi-calculator.html">BMI Calculator</a></div>
     <div class="menu-icon" onclick="toggleMenu()">
       <div></div>
       <div></div>
@@ -135,7 +329,7 @@
       <a href="https://calculatorage.net/about.html">About</a>
       <a href="https://calculatorage.net/privacy-policy.html">Privacy Policy</a>
       <a href="https://calculatorage.net/disclaimer.html">Disclaimer</a>
-      <a href="#">Contact</a>
+      <a href="https://calculatorage.net/contact.html">Contact</a>
     </div>
   </header>
 
@@ -144,27 +338,32 @@
     <section class="panel" aria-label="BMI Calculator">
       <div class="grid">
         <div>
-          <label for="wkg">Weight (kg)</label>
-          <input id="wkg" type="number" placeholder="70">
+          <label for="weight">Weight (kg)</label>
+          <input id="weight" type="number" min="0" step="0.1" placeholder="e.g. 70">
         </div>
         <div>
-          <label for="hcm">Height (cm)</label>
-          <input id="hcm" type="number" placeholder="175">
+          <label for="height">Height (cm)</label>
+          <input id="height" type="number" min="0" step="0.1" placeholder="e.g. 175">
         </div>
       </div>
 
       <div class="actions">
-        <button class="btn" onclick="calc()">Calculate BMI</button>
+        <button class="btn" id="calcBtn">Calculate BMI</button>
       </div>
 
-      <div class="result">
-        <div class="bmiBig" id="bmiVal">—</div>
-        <div id="bmiCat">Enter your details</div>
-        <div id="rangeOut"></div>
+      <div class="cards">
+        <div class="box">
+          <p class="statTitle">Your BMI</p>
+          <p class="big" id="bmiVal">—</p>
+        </div>
+        <div class="box">
+          <p class="statTitle">Category</p>
+          <p class="big" id="bmiCategory">—</p>
+        </div>
       </div>
     </section>
 
-    <!-- Article in Stylish Container -->
+    <!-- Article Section -->
     <section class="article-container">
       <h2>BMI Calculator: Effortless Health Assessment at Your Fingertips</h2>
       <p>A <strong>BMI Calculator</strong> is an essential tool to assess your body weight relative to your height. Whether you're using metric or imperial units, this tool helps you quickly calculate your <strong>Body Mass Index</strong> (BMI) and determine your healthy weight range.</p>
@@ -173,23 +372,27 @@
       <ul>
         <li><strong>Input Your Weight:</strong> Choose your preferred unit (kg/lb) and enter your weight.</li>
         <li><strong>Input Your Height:</strong> Enter your height in centimeters or feet and inches.</li>
-        <li><strong>Instant Results:</strong> The calculator will instantly display your BMI, category (e.g. underweight, normal, overweight), and healthy weight range.</li>
+        <li><strong>Instant Results:</strong> The calculator will instantly display your BMI, category (e.g., underweight, normal, overweight), and healthy weight range.</li>
       </ul>
 
       <h3>Frequently Asked Questions (FAQs)</h3>
-      <h4>1. What is a healthy BMI?</h4>
-      <p>A BMI between 18.5 and 24.9 is considered healthy. Anything below 18.5 is underweight, and above 24.9 is overweight.</p>
+      <h4>1. How do I use the BMI Calculator?</h4>
+      <p>Simply input your weight and height. The calculator will instantly display your BMI and category.</p>
 
-      <h4>2. Can I use the calculator for different units?</h4>
-      <p>Yes, the calculator supports both metric and imperial units, so you can calculate your BMI using kilograms or pounds, and height in centimeters or feet/inches.</p>
+      <h4>2. Can I use both metric and imperial units?</h4>
+      <p>Yes, you can choose either metric (kg, cm) or imperial (lb, ft/in) units for your weight and height.</p>
+
+      <h4>3. Is the BMI Calculator free to use?</h4>
+      <p>Yes, the BMI Calculator is completely free to use for anyone.</p>
 
       <h3>Final Words</h3>
-      <p>Understanding your BMI is an essential step in maintaining a healthy weight. With the <strong>BMI Calculator</strong>, you can easily calculate your BMI, determine your health status, and even find your healthy weight range, all with just a few clicks!</p>
+      <p>The <strong>BMI Calculator</strong> is a simple and effective tool for anyone who wants to monitor their health. Whether you're calculating your BMI to maintain a healthy lifestyle or track weight loss, this tool gives you instant results. It’s an easy-to-use and accessible solution for everyone.</p>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <div>© 2025 CalculatorAge. All rights reserved. • <a href="https://calculatorage.net/">Home</a></div>
+    <div>© 2025 BMI Calculator. All rights reserved.</div>
   </footer>
 
   <script>
@@ -198,23 +401,29 @@
       menu.classList.toggle('open');
     };
 
-    function calc(){
-      let bmi = null;
-      const w = parseFloat(document.getElementById("wkg").value);
-      const h = parseFloat(document.getElementById("hcm").value);
-      if(w > 0 && h > 0) {
-        bmi = w / ((h / 100) * (h / 100));
+    const fmt = (n) => isFinite(n) ? n.toFixed(2) : "—";
+
+    function calc() {
+      const weight = parseFloat(document.getElementById("weight").value);
+      const height = parseFloat(document.getElementById("height").value);
+      
+      if (isNaN(weight) || isNaN(height)) {
+        return;
       }
-      if(bmi) {
-        document.getElementById("bmiVal").textContent = Math.round(bmi * 10) / 10;
-        let cat = "";
-        if(bmi < 18.5) cat = "Underweight";
-        else if(bmi < 25) cat = "Normal";
-        else if(bmi < 30) cat = "Overweight";
-        else cat = "Obese";
-        document.getElementById("bmiCat").textContent = cat;
-      }
+      
+      const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
+      let category = "";
+      
+      if (bmi < 18.5) category = "Underweight";
+      else if (bmi < 24.9) category = "Normal";
+      else if (bmi < 29.9) category = "Overweight";
+      else category = "Obese";
+      
+      document.getElementById("bmiVal").textContent = bmi;
+      document.getElementById("bmiCategory").textContent = category;
     }
+
+    document.getElementById("calcBtn").addEventListener("click", calc);
   </script>
 </body>
 </html>
