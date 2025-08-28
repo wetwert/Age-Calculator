@@ -1,19 +1,101 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>BMI Calculator – Body Mass Index (Metric/Imperial) & Healthy Weight Range</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Free BMI Calculator (Metric & Imperial). Get your BMI, category, healthy weight range for your height, & share/copy results.">
-  <meta name="keywords" content="BMI calculator, body mass index, healthy weight range, metric, imperial, kg, cm, lb, ft inch">
-  <link rel="canonical" href="https://calculatorage.net/pages/bmi.html">
-  <meta name="robots" content="index,follow">
-
-    <!-- Favicon -->
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="shortcut icon" type="image/png" href="/favicon.png">
-<meta name="theme-color" content="#0d6efd">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Free BMI Calculator (Metric & Imperial). Get your BMI, category, healthy weight range for your height, & share/copy results." />
+  <link rel="canonical" href="https://calculatorage.net/bmi-calculator.html" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="https://calculatorage.net/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="https://calculatorage.net/favicon.png">
+  <meta name="theme-color" content="#0d6efd">
   
+  <!-- WebPage Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebPage",
+      "name": "BMI Calculator – Body Mass Index (Metric/Imperial) & Healthy Weight Range",
+      "description": "Free BMI Calculator (Metric & Imperial). Get your BMI, category, healthy weight range for your height, & share/copy results.",
+      "url": "https://calculatorage.net/bmi-calculator.html"
+    }
+  </script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I calculate my BMI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To calculate your BMI, input your weight and height into the BMI calculator. The tool will display your Body Mass Index and the corresponding category."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a healthy BMI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A healthy BMI is typically between 18.5 and 24.9. Anything below 18.5 is considered underweight, and above 24.9 is considered overweight."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://calculatorage.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "BMI Calculator",
+          "item": "https://calculatorage.net/bmi-calculator.html"
+        }
+      ]
+    }
+  </script>
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Article",
+      "headline": "BMI Calculator: Calculate Your Body Mass Index",
+      "description": "Learn how to calculate your BMI and discover your healthy weight range using our free BMI calculator. The tool supports both metric and imperial units.",
+      "image": "https://calculatorage.net/favicon.png", 
+      "author": {
+        "@type": "Person",
+        "name": "John Doe"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CalculatorAge",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://calculatorage.net/favicon.png"
+        }
+      },
+      "datePublished": "2025-08-27",
+      "dateModified": "2025-08-27",
+      "url": "https://calculatorage.net/bmi-calculator.html"
+    }
+  </script>
+
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fb; color:#222; }
     .wrap { max-width: 850px; margin: 30px auto; padding: 20px; background:#fff; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
@@ -71,49 +153,49 @@
     © 2025 CalculatorAge. All rights reserved. | <a href="../index.html">Home</a>
   </footer>
 
-<script>
-function calc(){
-  let bmi=null; let heightCm=null;
-  if(document.getElementById("btnMetric").classList.contains("active")){
-    const w=parseFloat(document.getElementById("wkg").value);
-    const h=parseFloat(document.getElementById("hcm").value);
-    if(w>0 && h>0){ bmi=w/((h/100)*(h/100)); heightCm=h; }
-  } else {
-    const w=parseFloat(document.getElementById("wlb").value);
-    const ft=parseFloat(document.getElementById("hft").value);
-    const inch=parseFloat(document.getElementById("hin").value);
-    const totalIn=ft*12+(inch||0);
-    if(w>0 && totalIn>0){ bmi=(w/(totalIn*totalIn))*703; heightCm=totalIn*2.54; }
-  }
-  if(bmi){
-    const val=(Math.round(bmi*10)/10);
-    document.getElementById("bmiVal").textContent=val;
-    let cat="";
-    if(val<18.5) cat="Underweight";
-    else if(val<25) cat="Normal";
-    else if(val<30) cat="Overweight";
-    else cat="Obese";
-    document.getElementById("bmiCat").textContent=cat;
+  <script>
+    function calc(){
+      let bmi=null; let heightCm=null;
+      if(document.getElementById("btnMetric").classList.contains("active")){
+        const w=parseFloat(document.getElementById("wkg").value);
+        const h=parseFloat(document.getElementById("hcm").value);
+        if(w>0 && h>0){ bmi=w/((h/100)*(h/100)); heightCm=h; }
+      } else {
+        const w=parseFloat(document.getElementById("wlb").value);
+        const ft=parseFloat(document.getElementById("hft").value);
+        const inch=parseFloat(document.getElementById("hin").value);
+        const totalIn=ft*12+(inch||0);
+        if(w>0 && totalIn>0){ bmi=(w/(totalIn*totalIn))*703; heightCm=totalIn*2.54; }
+      }
+      if(bmi){
+        const val=(Math.round(bmi*10)/10);
+        document.getElementById("bmiVal").textContent=val;
+        let cat="";
+        if(val<18.5) cat="Underweight";
+        else if(val<25) cat="Normal";
+        else if(val<30) cat="Overweight";
+        else cat="Obese";
+        document.getElementById("bmiCat").textContent=cat;
 
-    if(heightCm){
-      const min=(18.5*((heightCm/100)**2)).toFixed(1);
-      const max=(24.9*((heightCm/100)**2)).toFixed(1);
-      document.getElementById("rangeOut").textContent="Healthy range: "+min+" – "+max+" kg";
+        if(heightCm){
+          const min=(18.5*((heightCm/100)**2)).toFixed(1);
+          const max=(24.9*((heightCm/100)**2)).toFixed(1);
+          document.getElementById("rangeOut").textContent="Healthy range: "+min+" – "+max+" kg";
+        }
+      }
     }
-  }
-}
-document.getElementById("btnMetric").onclick=()=>{ 
-  document.getElementById("btnMetric").classList.add("active");
-  document.getElementById("btnImperial").classList.remove("active");
-  document.getElementById("metricFields").style.display="grid";
-  document.getElementById("imperialFields").style.display="none";
-}
-document.getElementById("btnImperial").onclick=()=>{ 
-  document.getElementById("btnImperial").classList.add("active");
-  document.getElementById("btnMetric").classList.remove("active");
-  document.getElementById("metricFields").style.display="none";
-  document.getElementById("imperialFields").style.display="grid";
-}
-</script>
+    document.getElementById("btnMetric").onclick=()=>{ 
+      document.getElementById("btnMetric").classList.add("active");
+      document.getElementById("btnImperial").classList.remove("active");
+      document.getElementById("metricFields").style.display="grid";
+      document.getElementById("imperialFields").style.display="none";
+    }
+    document.getElementById("btnImperial").onclick=()=>{ 
+      document.getElementById("btnImperial").classList.add("active");
+      document.getElementById("btnMetric").classList.remove("active");
+      document.getElementById("metricFields").style.display="none";
+      document.getElementById("imperialFields").style.display="grid";
+    }
+  </script>
 </body>
 </html>
