@@ -114,87 +114,106 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <a href="https://calculatorage.net/" aria-label="Back to Home">← Back to Home</a>
-    <h1>BMI Calculator</h1>
-    <p>Body Mass Index calculator with metric/imperial units, category scale, and healthy weight range.</p>
 
-    <div class="segmented">
-      <button id="btnMetric" class="active">Metric (kg, cm)</button>
-      <button id="btnImperial">Imperial (lb, ft+in)</button>
+  <!-- Header with Mobile Menu -->
+  <header>
+    <div class="logo"><a href='https://calculatorage.net/bmi-calculator.html'>BMI Calculator</a></div>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-
-    <div id="metricFields" class="controls">
-      <div><label>Weight (kg)</label><input id="wkg" type="number" placeholder="70"></div>
-      <div><label>Height (cm)</label><input id="hcm" type="number" placeholder="175"></div>
+    <nav>
+      <a href="https://calculatorage.net/">Home</a>
+      <a href="https://calculatorage.net/about.html">About</a>
+      <a href="https://calculatorage.net/privacy-policy.html">Privacy Policy</a>
+      <a href="https://calculatorage.net/disclaimer.html">Disclaimer</a>
+      <a href="https://calculatorage.net/contact.html">Contact</a>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="https://calculatorage.net/">Home</a>
+      <a href="https://calculatorage.net/about.html">About</a>
+      <a href="https://calculatorage.net/privacy-policy.html">Privacy Policy</a>
+      <a href="https://calculatorage.net/disclaimer.html">Disclaimer</a>
+      <a href="#">Contact</a>
     </div>
+  </header>
 
-    <div id="imperialFields" class="controls" style="display:none;">
-      <div><label>Weight (lb)</label><input id="wlb" type="number" placeholder="154"></div>
-      <div>
-        <label>Height</label>
-        <div style="display:flex;gap:5px;">
-          <input id="hft" type="number" placeholder="ft">
-          <input id="hin" type="number" placeholder="in">
+  <main>
+    <!-- BMI Calculator Panel -->
+    <section class="panel" aria-label="BMI Calculator">
+      <div class="grid">
+        <div>
+          <label for="wkg">Weight (kg)</label>
+          <input id="wkg" type="number" placeholder="70">
+        </div>
+        <div>
+          <label for="hcm">Height (cm)</label>
+          <input id="hcm" type="number" placeholder="175">
         </div>
       </div>
-    </div>
 
-    <button class="btn" onclick="calc()">Calculate BMI</button>
+      <div class="actions">
+        <button class="btn" onclick="calc()">Calculate BMI</button>
+      </div>
 
-    <div class="result">
-      <div class="bmiBig" id="bmiVal">—</div>
-      <div id="bmiCat">Enter your details</div>
-      <div id="rangeOut"></div>
-    </div>
-  </div>
+      <div class="result">
+        <div class="bmiBig" id="bmiVal">—</div>
+        <div id="bmiCat">Enter your details</div>
+        <div id="rangeOut"></div>
+      </div>
+    </section>
+
+    <!-- Article in Stylish Container -->
+    <section class="article-container">
+      <h2>BMI Calculator: Effortless Health Assessment at Your Fingertips</h2>
+      <p>A <strong>BMI Calculator</strong> is an essential tool to assess your body weight relative to your height. Whether you're using metric or imperial units, this tool helps you quickly calculate your <strong>Body Mass Index</strong> (BMI) and determine your healthy weight range.</p>
+
+      <h3>How to Use the BMI Calculator</h3>
+      <ul>
+        <li><strong>Input Your Weight:</strong> Choose your preferred unit (kg/lb) and enter your weight.</li>
+        <li><strong>Input Your Height:</strong> Enter your height in centimeters or feet and inches.</li>
+        <li><strong>Instant Results:</strong> The calculator will instantly display your BMI, category (e.g. underweight, normal, overweight), and healthy weight range.</li>
+      </ul>
+
+      <h3>Frequently Asked Questions (FAQs)</h3>
+      <h4>1. What is a healthy BMI?</h4>
+      <p>A BMI between 18.5 and 24.9 is considered healthy. Anything below 18.5 is underweight, and above 24.9 is overweight.</p>
+
+      <h4>2. Can I use the calculator for different units?</h4>
+      <p>Yes, the calculator supports both metric and imperial units, so you can calculate your BMI using kilograms or pounds, and height in centimeters or feet/inches.</p>
+
+      <h3>Final Words</h3>
+      <p>Understanding your BMI is an essential step in maintaining a healthy weight. With the <strong>BMI Calculator</strong>, you can easily calculate your BMI, determine your health status, and even find your healthy weight range, all with just a few clicks!</p>
+    </section>
+  </main>
 
   <footer>
-    © 2025 CalculatorAge. All rights reserved. | <a href="../index.html">Home</a>
+    <div>© 2025 CalculatorAge. All rights reserved. • <a href="https://calculatorage.net/">Home</a></div>
   </footer>
 
   <script>
-    function calc(){
-      let bmi=null; let heightCm=null;
-      if(document.getElementById("btnMetric").classList.contains("active")){
-        const w=parseFloat(document.getElementById("wkg").value);
-        const h=parseFloat(document.getElementById("hcm").value);
-        if(w>0 && h>0){ bmi=w/((h/100)*(h/100)); heightCm=h; }
-      } else {
-        const w=parseFloat(document.getElementById("wlb").value);
-        const ft=parseFloat(document.getElementById("hft").value);
-        const inch=parseFloat(document.getElementById("hin").value);
-        const totalIn=ft*12+(inch||0);
-        if(w>0 && totalIn>0){ bmi=(w/(totalIn*totalIn))*703; heightCm=totalIn*2.54; }
-      }
-      if(bmi){
-        const val=(Math.round(bmi*10)/10);
-        document.getElementById("bmiVal").textContent=val;
-        let cat="";
-        if(val<18.5) cat="Underweight";
-        else if(val<25) cat="Normal";
-        else if(val<30) cat="Overweight";
-        else cat="Obese";
-        document.getElementById("bmiCat").textContent=cat;
+    const toggleMenu = () => {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    };
 
-        if(heightCm){
-          const min=(18.5*((heightCm/100)**2)).toFixed(1);
-          const max=(24.9*((heightCm/100)**2)).toFixed(1);
-          document.getElementById("rangeOut").textContent="Healthy range: "+min+" – "+max+" kg";
-        }
+    function calc(){
+      let bmi = null;
+      const w = parseFloat(document.getElementById("wkg").value);
+      const h = parseFloat(document.getElementById("hcm").value);
+      if(w > 0 && h > 0) {
+        bmi = w / ((h / 100) * (h / 100));
       }
-    }
-    document.getElementById("btnMetric").onclick=()=>{ 
-      document.getElementById("btnMetric").classList.add("active");
-      document.getElementById("btnImperial").classList.remove("active");
-      document.getElementById("metricFields").style.display="grid";
-      document.getElementById("imperialFields").style.display="none";
-    }
-    document.getElementById("btnImperial").onclick=()=>{ 
-      document.getElementById("btnImperial").classList.add("active");
-      document.getElementById("btnMetric").classList.remove("active");
-      document.getElementById("metricFields").style.display="none";
-      document.getElementById("imperialFields").style.display="grid";
+      if(bmi) {
+        document.getElementById("bmiVal").textContent = Math.round(bmi * 10) / 10;
+        let cat = "";
+        if(bmi < 18.5) cat = "Underweight";
+        else if(bmi < 25) cat = "Normal";
+        else if(bmi < 30) cat = "Overweight";
+        else cat = "Obese";
+        document.getElementById("bmiCat").textContent = cat;
+      }
     }
   </script>
 </body>
