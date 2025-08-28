@@ -2,104 +2,428 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>BMI Calculator</title>
+  <title>BMI Calculator – Calculate Body Mass Index (Metric & Imperial)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Free BMI Calculator to calculate your Body Mass Index." />
+  <meta name="description" content="Free BMI Calculator to calculate Body Mass Index (BMI) using metric & imperial units. Get your results instantly." />
   <link rel="canonical" href="https://calculatorage.net/bmi-calculator.html" />
   <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="shortcut icon" type="image/png" href="/favicon.png">
   <meta name="theme-color" content="#0d6efd">
+
+  <!-- WebPage Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebPage",
+      "name": "BMI Calculator – Calculate Body Mass Index (Metric & Imperial)",
+      "description": "Free BMI Calculator to calculate Body Mass Index (BMI) using metric & imperial units. Get your results instantly.",
+      "url": "https://calculatorage.net/bmi-calculator.html"
+    }
+  </script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I use the BMI Calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Simply input your weight and height. The calculator will instantly display your BMI and categorize your health status."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the BMI Calculator free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the BMI Calculator is completely free and accessible to anyone."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://calculatorage.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "BMI Calculator",
+          "item": "https://calculatorage.net/bmi-calculator.html"
+        }
+      ]
+    }
+  </script>
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Article",
+      "headline": "BMI Calculator: Effortless Health Assessment at Your Fingertips",
+      "description": "Calculate your Body Mass Index (BMI) easily with this tool. Enter your weight and height and get instant results.",
+      "image": "https://calculatorage.net/favicon.png", 
+      "author": {
+        "@type": "Person",
+        "name": "John Doe"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CalculatorAge",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://calculatorage.net/favicon.png"
+        }
+      },
+      "datePublished": "2025-08-27",
+      "dateModified": "2025-08-27",
+      "url": "https://calculatorage.net/bmi-calculator.html"
+    }
+  </script>
+
   <style>
-    /* Main Styles */
+    :root {
+      --brand: #0d6efd;
+      --muted: #667085;
+      --card: #fff;
+      --border: #e9e9ef;
+      --bg: #f5f7fb;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #333;
       margin: 0;
-      padding: 0;
+      background: var(--bg);
+      color: #222;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    a {
+      color: var(--brand);
+      text-decoration: none;
     }
 
-    .container {
-      max-width: 960px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 15px 20px;
+      color: white;
     }
 
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      max-width: 960px;
-      margin: 0 auto;
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
     }
 
-    .game-card {
+    header nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    header nav a {
+      color: white;
+      font-size: 16px;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile Hamburger Menu */
+    .menu-icon {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #333;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .mobile-menu a {
+      color: white;
+      padding: 12px;
       text-align: center;
     }
 
-    .game-btn {
-      padding: 20px;
-      font-size: 18px;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+    .mobile-menu a:hover {
+      background-color: #444;
+    }
+
+    @media (max-width: 768px) {
+      header nav {
+        display: none;
+      }
+
+      .menu-icon {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: none;
+      }
+
+      .mobile-menu.open {
+        display: flex;
+      }
+    }
+
+    /* Main Styles */
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+      margin-top: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    input {
       width: 100%;
-      transition: background-color 0.3s;
+      padding: 12px;
+      border: 1px solid #d8dbe6;
+      border-radius: 10px;
+      outline: none;
     }
 
-    .game-btn:hover {
-      opacity: 0.9;
+    input:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, .12);
     }
 
-    .other-games h2 {
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: var(--brand);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn.ghost {
+      background: #eef2ff;
+      color: #1f3a93;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: #333;
+      color: white;
+      padding: 16px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: white;
+    }
+
+    /* Stylish Container for Article */
+    .article-container {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .article-container h2 {
       font-size: 28px;
+      color: var(--brand);
+    }
+
+    .article-container h3 {
+      font-size: 22px;
+      margin-top: 20px;
       color: #333;
-      margin-bottom: 20px;
+    }
+
+    .article-container p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .article-container ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>BMI Calculator: Effortless Health Assessment at Your Fingertips</h2>
-    <p>A BMI Calculator is an essential tool to assess your body weight relative to your height. This tool helps you quickly calculate your Body Mass Index (BMI) and determine your healthy weight range.</p>
-    <h3>How to Use the BMI Calculator</h3>
-    <ul>
-      <li><strong>Input Your Weight:</strong> Choose your preferred unit (kg/lb) and enter your weight.</li>
-      <li><strong>Input Your Height:</strong> Enter your height in centimeters or feet and inches.</li>
-      <li><strong>Instant Results:</strong> The calculator will instantly display your BMI, category (e.g. underweight, normal, overweight), and healthy weight range.</li>
-    </ul>
+  <!-- Header with Mobile Menu -->
+  <header>
+    <div class="logo"><a href="https://calculatorage.net/bmi-calculator.html">BMI Calculator</a></div>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav>
+      <a href="https://calculatorage.net/">Home</a>
+      <a href="https://calculatorage.net/about.html">About</a>
+      <a href="https://calculatorage.net/privacy-policy.html">Privacy Policy</a>
+      <a href="https://calculatorage.net/disclaimer.html">Disclaimer</a>
+      <a href="https://calculatorage.net/contact.html">Contact</a>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="https://calculatorage.net/">Home</a>
+      <a href="https://calculatorage.net/about.html">About</a>
+      <a href="https://calculatorage.net/privacy-policy.html">Privacy Policy</a>
+      <a href="https://calculatorage.net/disclaimer.html">Disclaimer</a>
+      <a href="https://calculatorage.net/contact.html">Contact</a>
+    </div>
+  </header>
 
-    <h3>Frequently Asked Questions (FAQs)</h3>
-    <p><strong>1. How do I use the BMI Calculator?</strong><br>Simply input the original price of the item and the discount percentage.</p>
-    <p><strong>2. Is the BMI Calculator free to use?</strong><br>Yes, it is completely free and accessible to anyone.</p>
-    <br>
+  <main>
+    <!-- BMI Calculator Panel -->
+    <section class="panel" aria-label="BMI Calculator">
+      <div class="grid">
+        <div>
+          <label for="weight">Weight (kg)</label>
+          <input id="weight" type="number" min="0" step="0.1" placeholder="e.g. 70">
+        </div>
+        <div>
+          <label for="height">Height (cm)</label>
+          <input id="height" type="number" min="0" step="0.1" placeholder="e.g. 175">
+        </div>
+      </div>
 
-    <!-- Other Games Section -->
-    <section class="other-games">
-      <h2>Play Our Other Calculators</h2>
-      <div class="game-grid">
-        <div class="game-card">
-          <button class="game-btn" style="background-color: yellow;" onclick="window.location.href='https://calculatorage.net/discount-calculator.html';">Discount Calculator</button>
+      <div class="actions">
+        <button class="btn" id="calcBtn">Calculate BMI</button>
+      </div>
+
+      <div class="cards">
+        <div class="box">
+          <p class="statTitle">Your BMI</p>
+          <p class="big" id="bmiVal">—</p>
         </div>
-        <div class="game-card">
-          <button class="game-btn" style="background-color: yellow;" onclick="window.location.href='https://calculatorage.net/currency-converter.html';">Currency Converter</button>
-        </div>
-        <div class="game-card">
-          <button class="game-btn" style="background-color: black;" onclick="window.location.href='https://calculatorage.net/tip-calculator.html';">Tip Calculator</button>
-        </div>
-        <div class="game-card">
-          <button class="game-btn" style="background-color: blue;" onclick="window.location.href='https://calculatorage.net/loan-calculator.html';">Loan Calculator</button>
-        </div>
-        <div class="game-card">
-          <button class="game-btn" style="background-color: blue;" onclick="window.location.href='https://calculatorage.net/percentage-calculator.html';">Percentage Calculator</button>
+        <div class="box">
+          <p class="statTitle">Category</p>
+          <p class="big" id="bmiCategory">—</p>
         </div>
       </div>
     </section>
-  </div>
+
+    <!-- Article Section -->
+    <section class="article-container">
+      <h2>BMI Calculator: Effortless Health Assessment at Your Fingertips</h2>
+      <p>A <strong>BMI Calculator</strong> is an essential tool to assess your body weight relative to your height. Whether you're using metric or imperial units, this tool helps you quickly calculate your <strong>Body Mass Index</strong> (BMI) and determine your healthy weight range.</p>
+
+      <h3>How to Use the BMI Calculator</h3>
+      <ul>
+        <li><strong>Input Your Weight:</strong> Choose your preferred unit (kg/lb) and enter your weight.</li>
+        <li><strong>Input Your Height:</strong> Enter your height in centimeters or feet and inches.</li>
+        <li><strong>Instant Results:</strong> The calculator will instantly display your BMI, category (e.g., underweight, normal, overweight), and healthy weight range.</li>
+      </ul>
+
+      <h3>Frequently Asked Questions (FAQs)</h3>
+      <h4>1. How do I use the BMI Calculator?</h4>
+      <p>Simply input your weight and height. The calculator will instantly display your BMI and category.</p>
+
+      <h4>2. Can I use both metric and imperial units?</h4>
+      <p>Yes, you can choose either metric (kg, cm) or imperial (lb, ft/in) units for your weight and height.</p>
+
+      <h4>3. Is the BMI Calculator free to use?</h4>
+      <p>Yes, the BMI Calculator is completely free to use for anyone.</p>
+
+      <h3>Final Words</h3>
+      <p>The <strong>BMI Calculator</strong> is a simple and effective tool for anyone who wants to monitor their health. Whether you're calculating your BMI to maintain a healthy lifestyle or track weight loss, this tool gives you instant results. It’s an easy-to-use and accessible solution for everyone.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div>© 2025 BMI Calculator. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const toggleMenu = () => {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    };
+
+    const fmt = (n) => isFinite(n) ? n.toFixed(2) : "—";
+
+    function calc() {
+      const weight = parseFloat(document.getElementById("weight").value);
+      const height = parseFloat(document.getElementById("height").value);
+      
+      if (isNaN(weight) || isNaN(height)) {
+        return;
+      }
+      
+      const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
+      let category = "";
+      
+      if (bmi < 18.5) category = "Underweight";
+      else if (bmi < 24.9) category = "Normal";
+      else if (bmi < 29.9) category = "Overweight";
+      else category = "Obese";
+      
+      document.getElementById("bmiVal").textContent = bmi;
+      document.getElementById("bmiCategory").textContent = category;
+    }
+
+    document.getElementById("calcBtn").addEventListener("click", calc);
+  </script>
 </body>
 </html>
