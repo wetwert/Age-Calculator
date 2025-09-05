@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <title>Currency Converter – Convert Currencies with Exchange Rates</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Free Currency Converter to convert between multiple currencies using real-time exchange rates. Get instant conversion results." />
   <link rel="canonical" href="https://calculatorage.net/currency-converter.html" />
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content="index, follow" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
@@ -23,10 +23,30 @@
   <meta name="theme-color" content="#0d6efd">
 
   <style>
-    :root{--brand:#0d6efd;--muted:#667085;--card:#fff;--border:#e9e9ef;--bg:#f5f7fb}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    a{color:var(--brand);text-decoration:none}
-    
+    :root {
+      --brand: #0d6efd;
+      --muted: #667085;
+      --card: #fff;
+      --border: #e9e9ef;
+      --bg: #f5f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #222;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
     /* Header Styles */
     header {
       display: flex;
@@ -35,6 +55,7 @@
       background-color: #333;
       padding: 15px 20px;
       color: white;
+      position: relative;
     }
 
     header .logo {
@@ -56,10 +77,64 @@
       text-decoration: underline;
     }
 
+    /* Mobile Hamburger Menu */
+    .menu-icon {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #333;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .mobile-menu a {
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .mobile-menu a:hover {
+      background-color: #444;
+    }
+
+    @media (max-width: 768px) {
+      header nav {
+        display: none; /* Hide nav links on mobile */
+      }
+
+      .menu-icon {
+        display: flex; /* Show hamburger menu on mobile */
+      }
+
+      .mobile-menu {
+        display: none;
+      }
+
+      .mobile-menu.open {
+        display: flex; /* Show the mobile menu when opened */
+      }
+    }
+
     /* Footer Styles */
     footer {
       border-top: 1px solid var(--border);
-      background: #333;
+      background: #000; /* Footer color set to black */
       color: white;
       padding: 16px 0;
       text-align: center;
@@ -70,31 +145,131 @@
     }
 
     /* Main styles from the second file */
-    .muted{color:var(--muted);font-size:14px}
-    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width:720px){.grid{grid-template-columns:1fr}}
-    label{font-weight:600}
-    input{width:100%;padding:12px;border:1px solid #d8dbe6;border-radius:10px;outline:none}
-    input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(13,110,253,.12)}
-    select{width:100%;padding:12px;border:1px solid #d8dbe6;border-radius:10px;outline:none}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{border:0;border-radius:10px;padding:12px 14px;background:var(--brand);color:#fff;cursor:pointer;font-weight:600}
-    .btn.ghost{background:#eef2ff;color:#1f3a93}
-    .btn.secondary{background:#0a58ca}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
-    @media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
-    @media (max-width:640px){.cards{grid-template-columns:1fr}}
-    .box{border:1px solid var(--border);border-radius:14px;background:#fbfbfc;padding:16px}
-    .statTitle{margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:.3px;text-transform:uppercase}
-    .big{margin:0;font-size:36px;font-weight:800}
-    footer{border-top:1px solid var(--border);background:#f7f7f9}
-    footer .inner{max-width:960px;margin:0 auto;padding:16px;color:#444;font-size:14px;text-align:center}
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8dbe6;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, .12);
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8dbe6;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: var(--brand);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn.ghost {
+      background: #eef2ff;
+      color: #1f3a93;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .box {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fbfbfc;
+      padding: 16px;
+    }
+
+    .statTitle {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: #6b7280;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+
+    .big {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 800;
+    }
+
+    footer .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px;
+      color: #444;
+      font-size: 14px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Header with Mobile Menu (from first file) -->
+  <!-- Header with Mobile Menu -->
   <header>
     <div class="logo"><a href='https://calculatorage.net/discount-calculator.html'>Discount Calculator</a></div>
     <div class="menu-icon" onclick="toggleMenu()">
@@ -167,7 +342,7 @@
     </section>
   </main>
 
-  <!-- Footer (from first file) -->
+  <!-- Footer -->
   <footer>
     <div>© 2025 Discount Calculator. All rights reserved.</div>
   </footer>
@@ -177,46 +352,6 @@
       const menu = document.getElementById('mobileMenu');
       menu.classList.toggle('open');
     };
-
-    const $ = id => document.getElementById(id);
-    const fmt = (n) => isFinite(n) ? n.toFixed(2) : "—";
-
-    // Function to get exchange rates and convert currency
-    async function convertCurrency() {
-      const amount = parseFloat($("amount").value);
-      const fromCurrency = $("fromCurrency").value;
-      const toCurrency = $("toCurrency").value;
-
-      if (isNaN(amount)) {
-        return;
-      }
-
-      const url = `https://api.exchangerate-api.com/v4/latest/${fromCurrency}`;
-      const response = await fetch(url);
-      const data = await response.json();
-
-      const rate = data.rates[toCurrency];
-      const convertedAmount = amount * rate;
-
-      $("convertedAmount").textContent = fmt(convertedAmount);
-    }
-
-    $("calcBtn").addEventListener("click", convertCurrency);
-    $("resetBtn").addEventListener("click", () => {
-      ["amount"].forEach(id => { const el = $(id); if (el) el.value = ""; });
-      $("convertedAmount").textContent = "—";
-    });
-
-    $("copyBtn").addEventListener("click", async () => {
-      const text = `Converted Amount: ${$("convertedAmount").textContent}`;
-      try { await navigator.clipboard.writeText(text); alert("Copied!"); } catch { alert("Copy failed. Copy manually:\n" + text); }
-    });
-
-    $("shareBtn").addEventListener("click", async () => {
-      const text = `Converted Amount: ${$("convertedAmount").textContent}`;
-      if (navigator.share) { try { await navigator.share({ title: "Currency Conversion", text }); } catch { } }
-      else alert("Sharing not supported on this device.\n\n" + text);
-    });
   </script>
 </body>
 </html>
