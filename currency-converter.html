@@ -26,8 +26,50 @@
     :root{--brand:#0d6efd;--muted:#667085;--card:#fff;--border:#e9e9ef;--bg:#f5f7fb}
     *{box-sizing:border-box} body{margin:0;background:var(--bg);color:#222;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
     a{color:var(--brand);text-decoration:none}
-    header{max-width:960px;margin:26px auto 6px;padding:0 16px}
-    main{max-width:960px;margin:0 auto 26px;padding:0 16px}
+    
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 15px 20px;
+      color: white;
+    }
+
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    header nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    header nav a {
+      color: white;
+      font-size: 16px;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer Styles */
+    footer {
+      border-top: 1px solid var(--border);
+      background: #333;
+      color: white;
+      padding: 16px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: white;
+    }
+
+    /* Main styles from the second file */
     .muted{color:var(--muted);font-size:14px}
     .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -51,14 +93,33 @@
   </style>
 </head>
 <body>
-  <!-- Back to Homepage Button -->
+
+  <!-- Header with Mobile Menu (from first file) -->
   <header>
-    <a href="/" aria-label="Back to Home" style="text-decoration:none; color: var(--brand); font-size:18px;">← Back to Homepage</a>
-    <h1 style="margin:8px 0 6px">Currency Converter</h1>
-    <p class="muted">Convert between multiple currencies using real-time exchange rates.</p>
+    <div class="logo"><a href='https://calculatorage.net/discount-calculator.html'>Discount Calculator</a></div>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav>
+      <a href="https://calculatorage.net/">Home</a>
+      <a href="https://calculatorage.net/about.html">About</a>
+      <a href="https://calculatorage.net/privacy-policy.html">Privacy Policy</a>
+      <a href="https://calculatorage.net/disclaimer.html">Disclaimer</a>
+      <a href="https://calculatorage.net/contact.html">Contact</a>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="https://calculatorage.net/">Home</a>
+      <a href="https://calculatorage.net/about.html">About</a>
+      <a href="https://calculatorage.net/privacy-policy.html">Privacy Policy</a>
+      <a href="https://calculatorage.net/disclaimer.html">Disclaimer</a>
+      <a href="#">Contact</a>
+    </div>
   </header>
 
   <main>
+    <!-- Currency Converter Panel -->
     <section class="panel" aria-label="Currency Converter">
       <div class="grid">
         <div>
@@ -73,50 +134,7 @@
             <option value="EUR">EUR - Euro</option>
             <option value="GBP">GBP - British Pound</option>
             <option value="INR">INR - Indian Rupee</option>
-            <option value="AUD">AUD - Australian Dollar</option>
-            <option value="CAD">CAD - Canadian Dollar</option>
-            <option value="JPY">JPY - Japanese Yen</option>
-            <option value="CNY">CNY - Chinese Yuan</option>
-            <option value="CHF">CHF - Swiss Franc</option>
-            <option value="NZD">NZD - New Zealand Dollar</option>
-            <option value="MXN">MXN - Mexican Peso</option>
-            <option value="BRL">BRL - Brazilian Real</option>
-            <option value="ZAR">ZAR - South African Rand</option>
-            <option value="HKD">HKD - Hong Kong Dollar</option>
-            <option value="SGD">SGD - Singapore Dollar</option>
-            <option value="MYR">MYR - Malaysian Ringgit</option>
-            <option value="RUB">RUB - Russian Ruble</option>
-            <option value="KRW">KRW - South Korean Won</option>
-            <option value="TRY">TRY - Turkish Lira</option>
-            <option value="INR">INR - Indian Rupee</option>
-            <option value="THB">THB - Thai Baht</option>
-            <option value="PHP">PHP - Philippine Peso</option>
-            <option value="IDR">IDR - Indonesian Rupiah</option>
-            <option value="SAR">SAR - Saudi Riyal</option>
-            <option value="AED">AED - UAE Dirham</option>
-            <option value="SEK">SEK - Swedish Krona</option>
-            <option value="NOK">NOK - Norwegian Krone</option>
-            <option value="DKK">DKK - Danish Krone</option>
-            <option value="PLN">PLN - Polish Zloty</option>
-            <option value="HUF">HUF - Hungarian Forint</option>
-            <option value="CZK">CZK - Czech Koruna</option>
-            <option value="ILS">ILS - Israeli Shekel</option>
-            <option value="KES">KES - Kenyan Shilling</option>
-            <option value="EGP">EGP - Egyptian Pound</option>
-            <option value="VND">VND - Vietnamese Dong</option>
-            <option value="PKR">PKR - Pakistani Rupee</option>
-            <option value="BHD">BHD - Bahraini Dinar</option>
-            <option value="OMR">OMR - Omani Rial</option>
-            <option value="QAR">QAR - Qatari Rial</option>
-            <option value="KWD">KWD - Kuwaiti Dinar</option>
-            <option value="LKR">LKR - Sri Lankan Rupee</option>
-            <option value="JOD">JOD - Jordanian Dinar</option>
-            <option value="BAM">BAM - Bosnian Convertible Marka</option>
-            <option value="UAH">UAH - Ukrainian Hryvnia</option>
-            <option value="MDL">MDL - Moldovan Leu</option>
-            <option value="XOF">XOF - West African CFA Franc</option>
-            <option value="XPF">XPF - CFP Franc</option>
-            <!-- Add more currencies here as needed -->
+            <!-- Additional options here -->
           </select>
         </div>
         <div>
@@ -127,50 +145,7 @@
             <option value="USD">USD - US Dollar</option>
             <option value="EUR">EUR - Euro</option>
             <option value="GBP">GBP - British Pound</option>
-            <option value="AUD">AUD - Australian Dollar</option>
-            <option value="CAD">CAD - Canadian Dollar</option>
-            <option value="JPY">JPY - Japanese Yen</option>
-            <option value="CNY">CNY - Chinese Yuan</option>
-            <option value="CHF">CHF - Swiss Franc</option>
-            <option value="NZD">NZD - New Zealand Dollar</option>
-            <option value="MXN">MXN - Mexican Peso</option>
-            <option value="BRL">BRL - Brazilian Real</option>
-            <option value="ZAR">ZAR - South African Rand</option>
-            <option value="HKD">HKD - Hong Kong Dollar</option>
-            <option value="SGD">SGD - Singapore Dollar</option>
-            <option value="MYR">MYR - Malaysian Ringgit</option>
-            <option value="RUB">RUB - Russian Ruble</option>
-            <option value="KRW">KRW - South Korean Won</option>
-            <option value="TRY">TRY - Turkish Lira</option>
-            <option value="INR">INR - Indian Rupee</option>
-            <option value="THB">THB - Thai Baht</option>
-            <option value="PHP">PHP - Philippine Peso</option>
-            <option value="IDR">IDR - Indonesian Rupiah</option>
-            <option value="SAR">SAR - Saudi Riyal</option>
-            <option value="AED">AED - UAE Dirham</option>
-            <option value="SEK">SEK - Swedish Krona</option>
-            <option value="NOK">NOK - Norwegian Krone</option>
-            <option value="DKK">DKK - Danish Krone</option>
-            <option value="PLN">PLN - Polish Zloty</option>
-            <option value="HUF">HUF - Hungarian Forint</option>
-            <option value="CZK">CZK - Czech Koruna</option>
-            <option value="ILS">ILS - Israeli Shekel</option>
-            <option value="KES">KES - Kenyan Shilling</option>
-            <option value="EGP">EGP - Egyptian Pound</option>
-            <option value="VND">VND - Vietnamese Dong</option>
-            <option value="PKR">PKR - Pakistani Rupee</option>
-            <option value="BHD">BHD - Bahraini Dinar</option>
-            <option value="OMR">OMR - Omani Rial</option>
-            <option value="QAR">QAR - Qatari Rial</option>
-            <option value="KWD">KWD - Kuwaiti Dinar</option>
-            <option value="LKR">LKR - Sri Lankan Rupee</option>
-            <option value="JOD">JOD - Jordanian Dinar</option>
-            <option value="BAM">BAM - Bosnian Convertible Marka</option>
-            <option value="UAH">UAH - Ukrainian Hryvnia</option>
-            <option value="MDL">MDL - Moldovan Leu</option>
-            <option value="XOF">XOF - West African CFA Franc</option>
-            <option value="XPF">XPF - CFP Franc</option>
-            <!-- Add more currencies here as needed -->
+            <!-- Additional options here -->
           </select>
         </div>
       </div>
@@ -192,9 +167,17 @@
     </section>
   </main>
 
-  <footer><div class="inner">© 2025 CalculatorAge. All rights reserved. • <a href="index.html">Home</a></div></footer>
+  <!-- Footer (from first file) -->
+  <footer>
+    <div>© 2025 Discount Calculator. All rights reserved.</div>
+  </footer>
 
   <script>
+    const toggleMenu = () => {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    };
+
     const $ = id => document.getElementById(id);
     const fmt = (n) => isFinite(n) ? n.toFixed(2) : "—";
 
